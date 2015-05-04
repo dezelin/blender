@@ -23,16 +23,5 @@
 #
 # ***** END GPL LICENSE BLOCK *****
 
-add_subdirectory(blender)
-
-if (WITH_BLUEPRINTS)
-  add_subdirectory(blueprints)
-endif()
-
-if (WITH_TERRAINENGINE)
-  add_subdirectory(terrainengine)
-endif()
-
-if(WITH_GAMEENGINE)
-	add_subdirectory(gameengine)
-endif()
+add_subdirectory(blueprints)
+add_subdirectory(editors)

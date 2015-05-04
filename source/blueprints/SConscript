@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#
 # ***** BEGIN GPL LICENSE BLOCK *****
 #
 # This program is free software; you can redistribute it and/or
@@ -19,20 +21,27 @@
 #
 # The Original Code is: all of this file.
 #
-# Contributor(s): Jacques Beaurain.
+# Contributor(s): Aleksandar Dezelin.
 #
 # ***** END GPL LICENSE BLOCK *****
 
-add_subdirectory(blender)
+Import ('env')
 
-if (WITH_BLUEPRINTS)
-  add_subdirectory(blueprints)
-endif()
+sources = env.Glob('intern/*.c')
 
-if (WITH_TERRAINENGINE)
-  add_subdirectory(terrainengine)
-endif()
+cflags=''
+# don't add ../blenkernel back!
+incs = [
+    '.',
+    #'#/extern/wcwidth',
+    #'#/intern/guardedalloc',
+    #'#/intern/atomic',
+    #'../makesdna',
+    #env['BF_FREETYPE_INC'],
+    #env['BF_ZLIB_INC'],
+    ]
+incs = ' '.join(incs)
 
-if(WITH_GAMEENGINE)
-	add_subdirectory(gameengine)
-endif()
+defs = []
+
+env.BlenderLib ( 'bf_blueprints', sources, Split(incs), Split(defs), libtype=['core','player'], priority = [370,230], compileflags =cflags )
