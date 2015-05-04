@@ -23,16 +23,25 @@
 #
 # ***** END GPL LICENSE BLOCK *****
 
-add_subdirectory(blender)
+# XXX allowing blenkernel and RNA includes in blenlib is a hack,
+# but needed in a few places atm (bpath.c for instance)
+set(INC
+	.
+	# ../blenkernel  # dont add this back!
+	#../makesdna
+	#../../../intern/guardedalloc
+	#../../../intern/atomic
+	#../../../extern/wcwidth
+)
 
-if (WITH_BLUEPRINTS)
-  add_subdirectory(blueprints)
-endif()
+set(INC_SYS
+  .
+)
 
-if (WITH_TERRAINENGINE)
-  add_subdirectory(terrainengine)
-endif()
+set(SRC
+	intern/dummy.c
+	
+	BP_dummy.h
+)
 
-if(WITH_GAMEENGINE)
-	add_subdirectory(gameengine)
-endif()
+blender_add_lib(te_editors "${SRC}" "${INC}" "${INC_SYS}")

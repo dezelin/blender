@@ -29,6 +29,12 @@ Import ('env')
 
 SConscript(['blender/SConscript'])
 
+if env['WITH_BF_BLUEPRINTS']:
+    SConscript (['blueprints/SConscript'])
+
+if env['WITH_BF_TERRAINENGINE']:
+    SConscript (['terrainengine/SConscript'])
+
 if env['WITH_BF_GAMEENGINE']:
     SConscript (['gameengine/SConscript'])
 
