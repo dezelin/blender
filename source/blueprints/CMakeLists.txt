@@ -14,12 +14,12 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
-# The Original Code is Copyright (C) 2006, Blender Foundation
+# The Original Code is Copyright (C) 2015, Aleksandar Dezelin
 # All rights reserved.
 #
 # The Original Code is: all of this file.
 #
-# Contributor(s): Jacques Beaurain.
+# Contributor(s): none yet.
 #
 # ***** END GPL LICENSE BLOCK *****
 
@@ -27,21 +27,29 @@
 # but needed in a few places atm (bpath.c for instance)
 set(INC
 	.
-	# ../blenkernel  # dont add this back!
-	#../makesdna
-	#../../../intern/guardedalloc
-	#../../../intern/atomic
-	#../../../extern/wcwidth
+	../blender/blenlib
+	../blender/makesdna
 )
 
 set(INC_SYS
-  .
+	.
 )
 
 set(SRC
-	intern/dummy.c
-	
-	BP_dummy.h
+	intern/blueprint.c
+	intern/blueprintconn.c
+	intern/blueprintdescription.c
+	intern/blueprintevent.c
+	intern/blueprintfunc.c
+	intern/blueprintnode.c
+	intern/blueprintsettings.c
+	BP_blueprint.h
+	BP_blueprintconn.h
+	BP_blueprintdescription.h
+	BP_blueprintevent.h
+	BP_blueprintfunc.h
+	BP_blueprintnode.h
+	BP_blueprintsettings.h
 )
 
 blender_add_lib(bf_blueprints "${SRC}" "${INC}" "${INC_SYS}")
