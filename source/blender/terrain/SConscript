@@ -25,25 +25,5 @@
 #
 # ***** END GPL LICENSE BLOCK *****
 
-Import ('env')
-
-sources = env.Glob('*.c')
-
-incs = [
-    env['BF_GLEW_INC'],
-    '.',
-    '../include',
-    '../../../blender/makesdna',
-    '../../../blender/makesrna',
-    '../../../blender/windowmanager',
-    '../../../../intern/guardedalloc',
-    '../../../../intern/glew-mx',
-    ]
-incs = ' '.join(incs)
-
-defs = env['BF_GL_DEFINITIONS']
-
-if env['WITH_BF_INTERNATIONAL']:
-    defs.append('WITH_INTERNATIONAL')
-
-env.BlenderLib('te_editor_blueprint', sources, Split(incs), defs, libtype=['core'], priority=[45])
+SConscript (['blueprints/SConscript'])
+SConscript (['editors/SConscript'])

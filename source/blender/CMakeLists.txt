@@ -152,3 +152,10 @@ if(WITH_FREESTYLE)
 	add_subdirectory(freestyle)
 endif()
 
+if(WITH_BLUEPRINTS)
+  add_subdirectory(blueprints)
+endif()
+
+if(WITH_TERRAINENGINE)
+  add_subdirectory(terrain)
+endif()
