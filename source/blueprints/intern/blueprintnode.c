@@ -26,6 +26,8 @@
 */
 
 #include "BP_blueprintnode.h"
+
+#include <assert.h>
 #include <malloc.h>
 #include <memory.h>
 #include <string.h>
@@ -41,5 +43,20 @@ BP_BlueprintNode *BP_blueprint_node_create()
 
 void BP_blueprint_node_destroy(BP_BlueprintNode *bpn)
 {
+	assert(bpn);
+	if (!bpn) return;
+
+	BP_BlueprintInputPort *inputp, *inputp_first = NULL;
+	BLI_LISTBASE_CIRCULAR_FORWARD_BEGIN(&bpn->inputs, inputp, inputp_first);
+		assert(inputp);
+		BP_blueprint_input_port_destroy(inputp);
+	BLI_LISTBASE_CIRCULAR_FORWARD_END(&bpn->inputs, inputp, inputp_first);
+
+	BP_BlueprintOutputPort *outputp, *outputp_first = NULL;
+	BLI_LISTBASE_CIRCULAR_FORWARD_BEGIN(&bpn->outputs, outputp, outputp_first);
+		assert(outputp);
+		BP_blueprint_output_port_destroy(outputp);
+	BLI_LISTBASE_CIRCULAR_FORWARD_END(&bpn->outputs, outputp, outputp_first);
+
 	free(bpn);
 }

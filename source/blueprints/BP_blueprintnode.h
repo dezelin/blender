@@ -28,9 +28,20 @@
 #ifndef __BP_BLUEPRINTNODE_H__
 #define __BP_BLUEPRINTNODE_H__
 
+#include "BLI_listbase.h"
+
+#include "BP_blueprintinputport.h"
+#include "BP_blueprintoutputport.h"
+
 typedef struct BP_BlueprintNode {
 	struct BP_BlueprintNode *next, *prev;
 	void *ctx;
+
+	/* BP_BlueprintInputPort is the base structure for this list */
+	ListBase inputs;
+	/* BP_BlueprintOutputPort is the base structure for this list */
+	ListBase outputs;
+
 } BP_BlueprintNode;
 
 BP_BlueprintNode *BP_blueprint_node_create();
