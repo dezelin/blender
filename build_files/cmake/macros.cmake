@@ -659,7 +659,7 @@ macro(SETUP_BLENDER_SORTED_LIBS)
 		list(APPEND BLENDER_SORTED_LIBS bf_blueprints)
 	endif()
 		
-	if(WITH_TERRAINENGINE)
+	if(WITH_TERRAIN)
 		list(APPEND BLENDER_SORTED_LIBS 
 			te_blueprints
 			te_editor_blueprint)

@@ -23,35 +23,42 @@
 #
 # ***** END GPL LICENSE BLOCK *****
 
-
 set(INC
-  .
-	../include
-	../../../blender/makesdna
-	../../../blender/makesrna
-	../../../blender/windowmanager
-	../../../../intern/guardedalloc
-	../../../../intern/glew-mx
+	.
+	../blenlib
+	../makesdna
+	../../blenlib
 )
 
 set(INC_SYS
-	${GLEW_INCLUDE_PATH}
+	.
 )
 
 set(SRC
-	blueprint_space.c
-	blueprint_internal.c
-	blueprint_ops.c
-	blueprint_update.c
-	blueprint_view.c
-
-	blueprint_intern.h
+	intern/blueprint.c
+	intern/blueprintconn.c
+	intern/blueprintdescription.c
+	intern/blueprintevent.c
+	intern/blueprintgroup.c
+	intern/blueprintfunc.c
+	intern/blueprintinputport.c
+	intern/blueprintnode.c
+	intern/blueprintport.c
+	intern/blueprintoutputport.c
+	intern/blueprintsettings.c
+	intern/blueprintvar.c
+	BP_blueprint.h
+	BP_blueprintconn.h
+	BP_blueprintdescription.h
+	BP_blueprintevent.h
+	BP_blueprintgroup.h
+	BP_blueprintfunc.h
+	BP_blueprintinputport.h
+	BP_blueprintnode.h
+	BP_blueprintoutputport.h
+	BP_blueprintport.h
+	BP_blueprintsettings.h
+	BP_blueprintvar.h
 )
 
-add_definitions(${GL_DEFINITIONS})
-
-if(WITH_INTERNATIONAL)
-	add_definitions(-DWITH_INTERNATIONAL)
-endif()
-
-blender_add_lib(te_editor_blueprint "${SRC}" "${INC}" "${INC_SYS}")
+blender_add_lib(bf_blueprints "${SRC}" "${INC}" "${INC_SYS}")
