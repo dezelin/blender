@@ -43,6 +43,7 @@ set(SRC
 	intern/blueprintfunc.c
 	intern/blueprintnode.c
 	intern/blueprintsettings.c
+	intern/blueprintvar.c
 	BP_blueprint.h
 	BP_blueprintconn.h
 	BP_blueprintdescription.h
@@ -50,6 +51,7 @@ set(SRC
 	BP_blueprintfunc.h
 	BP_blueprintnode.h
 	BP_blueprintsettings.h
+	BP_blueprintvar.h
 )
 
 blender_add_lib(bf_blueprints "${SRC}" "${INC}" "${INC_SYS}")
