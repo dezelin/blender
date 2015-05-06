@@ -65,6 +65,7 @@
 #include "ED_clip.h"
 #include "ED_mask.h"
 #include "ED_sequencer.h"
+#include "ED_terrain_blueprint.h"
 
 #include "io_ops.h"
 
@@ -96,6 +97,7 @@ void ED_spacetypes_init(void)
 	ED_spacetype_console();
 	ED_spacetype_userpref();
 	ED_spacetype_clip();
+	ED_spacetype_terrain_blueprint();
 //	...
 	
 	/* register operator types for screen and all spaces */
@@ -121,6 +123,8 @@ void ED_spacetypes_init(void)
 	
 	ED_operatortypes_view2d();
 	ED_button_operatortypes();
+
+	ED_operatortypes_terrain_blueprint();
 	
 	/* register operators */
 	spacetypes = BKE_spacetypes_list();
@@ -154,6 +158,7 @@ void ED_spacemacros_init(void)
 	ED_operatormacros_sequencer();
 	ED_operatormacros_paint();
 	ED_operatormacros_gpencil();
+	ED_operatormacros_terrain_blueprint();
 
 	/* register dropboxes (can use macros) */
 	spacetypes = BKE_spacetypes_list();
@@ -188,6 +193,8 @@ void ED_spacetypes_keymap(wmKeyConfig *keyconf)
 	ED_keymap_marker(keyconf);
 
 	ED_keymap_view2d(keyconf);
+
+	ED_keymap_terrain_blueprint(keyconf);
 
 	spacetypes = BKE_spacetypes_list();
 	for (stype = spacetypes->first; stype; stype = stype->next) {

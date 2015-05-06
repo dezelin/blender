@@ -14,28 +14,44 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
-# Contributor(s): Jacques Beaurain.
+# The Original Code is Copyright (C) 2015, Aleksandar Dezelin
+# All rights reserved.
+#
+# The Original Code is: all of this file.
+#
+# Contributor(s): none yet.
 #
 # ***** END GPL LICENSE BLOCK *****
 
+
 set(INC
+  .
 	../include
-	../io
-	../../blenkernel
-	../../blenlib
-	../../makesdna
-	../../makesrna
-	../../windowmanager
-	../../../terrainengine/editors/include
+	../../../blender/makesdna
+	../../../blender/makesrna
+	../../../blender/windowmanager
 	../../../../intern/guardedalloc
+	../../../../intern/glew-mx
 )
 
 set(INC_SYS
-
+	${GLEW_INCLUDE_PATH}
 )
 
 set(SRC
-	spacetypes.c
+	blueprint_space.c
+	blueprint_internal.c
+	blueprint_ops.c
+	blueprint_update.c
+	blueprint_view.c
+
+	blueprint_intern.h
 )
 
-blender_add_lib(bf_editor_space_api "${SRC}" "${INC}" "${INC_SYS}")
+add_definitions(${GL_DEFINITIONS})
+
+if(WITH_INTERNATIONAL)
+	add_definitions(-DWITH_INTERNATIONAL)
+endif()
+
+blender_add_lib(te_editor_blueprint "${SRC}" "${INC}" "${INC_SYS}")

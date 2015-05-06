@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#
 # ***** BEGIN GPL LICENSE BLOCK *****
 #
 # This program is free software; you can redistribute it and/or
@@ -14,28 +16,34 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
-# Contributor(s): Jacques Beaurain.
+# The Original Code is Copyright (C) 2015, Aleksandar Dezelin
+# All rights reserved.
+#
+# The Original Code is: all of this file.
+#
+# Contributor(s): none yet.
 #
 # ***** END GPL LICENSE BLOCK *****
 
-set(INC
-	../include
-	../io
-	../../blenkernel
-	../../blenlib
-	../../makesdna
-	../../makesrna
-	../../windowmanager
-	../../../terrainengine/editors/include
-	../../../../intern/guardedalloc
-)
+Import ('env')
 
-set(INC_SYS
+sources = env.Glob('*.c')
 
-)
+incs = [
+    env['BF_GLEW_INC'],
+    '.',
+    '../include',
+    '../../../blender/makesdna',
+    '../../../blender/makesrna',
+    '../../../blender/windowmanager',
+    '../../../../intern/guardedalloc',
+    '../../../../intern/glew-mx',
+    ]
+incs = ' '.join(incs)
 
-set(SRC
-	spacetypes.c
-)
+defs = env['BF_GL_DEFINITIONS']
 
-blender_add_lib(bf_editor_space_api "${SRC}" "${INC}" "${INC_SYS}")
+if env['WITH_BF_INTERNATIONAL']:
+    defs.append('WITH_INTERNATIONAL')
+
+env.BlenderLib('te_editor_blueprint', sources, Split(incs), defs, libtype=['core'], priority=[45])
