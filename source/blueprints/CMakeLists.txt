@@ -23,8 +23,6 @@
 #
 # ***** END GPL LICENSE BLOCK *****
 
-# XXX allowing blenkernel and RNA includes in blenlib is a hack,
-# but needed in a few places atm (bpath.c for instance)
 set(INC
 	.
 	../blender/blenlib
@@ -40,16 +38,24 @@ set(SRC
 	intern/blueprintconn.c
 	intern/blueprintdescription.c
 	intern/blueprintevent.c
+	intern/blueprintgroup.c
 	intern/blueprintfunc.c
+	intern/blueprintinputport.c
 	intern/blueprintnode.c
+	intern/blueprintport.c
+	intern/blueprintoutputport.c
 	intern/blueprintsettings.c
 	intern/blueprintvar.c
 	BP_blueprint.h
 	BP_blueprintconn.h
 	BP_blueprintdescription.h
 	BP_blueprintevent.h
+	BP_blueprintgroup.h
 	BP_blueprintfunc.h
+	BP_blueprintinputport.h
 	BP_blueprintnode.h
+	BP_blueprintoutputport.h
+	BP_blueprintport.h
 	BP_blueprintsettings.h
 	BP_blueprintvar.h
 )
