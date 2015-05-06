@@ -19,7 +19,7 @@
 #
 # The Original Code is: all of this file.
 #
-# Contributor(s): Jacques Beaurain.
+# Contributor(s): Jacques Beaurain, Aleksandar Dezelin.
 #
 # ***** END GPL LICENSE BLOCK *****
 

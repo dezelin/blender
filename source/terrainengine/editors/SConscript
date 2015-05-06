@@ -16,32 +16,13 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
-# The Original Code is Copyright (C) 2006, Blender Foundation
+# The Original Code is Copyright (C) 2015, Aleksandar Dezelin
 # All rights reserved.
 #
 # The Original Code is: all of this file.
 #
-# Contributor(s): Aleksandar Dezelin.
+# Contributor(s): none yet.
 #
 # ***** END GPL LICENSE BLOCK *****
 
-Import ('env')
-
-sources = env.Glob('intern/*.c')
-
-cflags=''
-# don't add ../blenkernel back!
-incs = [
-    '.',
-    #'#/extern/wcwidth',
-    #'#/intern/guardedalloc',
-    #'#/intern/atomic',
-    #'../makesdna',
-    #env['BF_FREETYPE_INC'],
-    #env['BF_ZLIB_INC'],
-    ]
-incs = ' '.join(incs)
-
-defs = []
-
-env.BlenderLib ( 'te_editors', sources, Split(incs), Split(defs), libtype=['core','player'], priority = [370,230], compileflags =cflags )
+SConscript (['blueprint/SConscript'])
