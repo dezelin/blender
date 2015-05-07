@@ -68,6 +68,7 @@ EnumPropertyItem space_type_items[] = {
 	{SPACE_EMPTY, "EMPTY", ICON_NONE, "Empty", ""},
 	{SPACE_VIEW3D, "VIEW_3D", ICON_VIEW3D, "3D View", "3D viewport"},
 	{0, "", ICON_NONE, NULL, NULL},
+	{SPACE_TERRAIN, "TERRAIN", ICON_TERRAIN, "Terrain Editor", "Terrain editing tools"},
 	{SPACE_TIME, "TIMELINE", ICON_TIME, "Timeline", "Timeline and playback controls"},
 	{SPACE_IPO, "GRAPH_EDITOR", ICON_IPO, "Graph Editor", "Edit drivers and keyframe interpolation"},
 	{SPACE_ACTION, "DOPESHEET_EDITOR", ICON_ACTION, "Dope Sheet", "Adjust timing of keyframes"},
@@ -298,6 +299,8 @@ static StructRNA *rna_Space_refine(struct PointerRNA *ptr)
 			return &RNA_SpaceUserPreferences;
 		case SPACE_CLIP:
 			return &RNA_SpaceClipEditor;
+		case SPACE_TERRAIN:
+			return &RNA_SpaceTerrainEditor;
 		default:
 			return &RNA_Space;
 	}
@@ -4537,6 +4540,16 @@ static void rna_def_space_clip(BlenderRNA *brna)
 	RNA_def_property_update(prop, NC_SPACE | ND_SPACE_CLIP, NULL);
 }
 
+static void rna_def_space_terrain(BlenderRNA *brna)
+{
+	StructRNA *srna;
+	PropertyRNA *prop;
+
+	srna = RNA_def_struct(brna, "SpaceTerrainEditor", "Space");
+	RNA_def_struct_sdna(srna, "SpaceTerrain");
+	RNA_def_struct_ui_text(srna, "Space Terrain Editor", "Terrain editor space data");
+}
+
 
 void RNA_def_space(BlenderRNA *brna)
 {
@@ -4563,6 +4576,7 @@ void RNA_def_space(BlenderRNA *brna)
 	rna_def_space_node(brna);
 	rna_def_space_logic(brna);
 	rna_def_space_clip(brna);
+	rna_def_space_terrain(brna);
 }
 
 #endif
