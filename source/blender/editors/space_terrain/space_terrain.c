@@ -51,6 +51,8 @@
 #include "UI_resources.h"
 #include "UI_view2d.h"
 
+#include "terrain_intern.h"
+
 
 static SpaceLink *terrain_new(const bContext *C)
 {
@@ -77,10 +79,43 @@ static SpaceLink *terrain_new(const bContext *C)
 	return (SpaceLink *)sterrain;
 }
 
-/* add handlers, stuff you only do once or on area/region changes */
-static void terrain_main_area_init(wmWindowManager *wm, ARegion *ar)
+static void terrain_free(SpaceLink *sl)
 {
-	UI_view2d_region_reinit(&ar->v2d, V2D_COMMONVIEW_CUSTOM, ar->winx, ar->winy);
+
+}
+
+static void terrain_init(wmWindowManager *UNUSED(wm), ScrArea *UNUSED(sa))
+{
+
+}
+
+static void terrain_listener(bScreen *UNUSED(sc), ScrArea *sa, struct wmNotifier *wmn)
+{
+}
+
+static SpaceLink *terrain_duplicate(SpaceLink *sl)
+{
+	return NULL;
+}
+
+void terrain_operatortypes(void)
+{
+
+}
+
+void terrain_keymap(wmKeyConfig *keyconf)
+{
+
+}
+
+static void terrain_dropboxes(void)
+{
+
+}
+
+static int terrain_context(const bContext *C, const char *member, bContextDataResult *result)
+{
+	return 0;
 }
 
 static void terrain_main_area_draw(const bContext *C, ARegion *ar)
@@ -106,6 +141,89 @@ static void terrain_main_area_draw(const bContext *C, ARegion *ar)
 	UI_view2d_scrollers_free(scrollers);
 }
 
+/* add handlers, stuff you only do once or on area/region changes */
+static void terrain_main_area_init(wmWindowManager *wm, ARegion *ar)
+{
+	UI_view2d_region_reinit(&ar->v2d, V2D_COMMONVIEW_CUSTOM, ar->winx, ar->winy);
+}
+
+static void terrain_main_area_exit(wmWindowManager *wm, ARegion *ar)
+{
+
+}
+
+static void terrain_main_area_free(ARegion *ar)
+{
+
+}
+
+/* copy regiondata */
+static void *terrain_main_area_duplicate(void *poin)
+{
+	return NULL;
+}
+
+static void terrain_main_area_listener(bScreen *sc, ScrArea *sa, ARegion *ar, wmNotifier *wmn)
+{
+
+}
+
+static void terrain_main_area_cursor(wmWindow *win, ScrArea *UNUSED(sa), ARegion *UNUSED(ar))
+{
+
+}
+
+static void terrain_buttons_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
+{
+
+}
+
+/* add handlers, stuff you only do once or on area/region changes */
+static void terrain_buttons_area_init(wmWindowManager *wm, ARegion *ar)
+{
+
+}
+
+static void terrain_buttons_area_draw(const bContext *C, ARegion *ar)
+{
+
+}
+
+static void terrain_tools_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
+{
+
+}
+
+static void terrain_tools_area_init(wmWindowManager *wm, ARegion *ar)
+{
+
+}
+
+static void terrain_tools_area_draw(const bContext *C, ARegion *ar)
+{
+
+}
+
+static void terrain_props_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
+{
+
+}
+
+static void terrain_props_area_init(wmWindowManager *wm, ARegion *ar)
+{
+
+}
+
+static void terrain_props_area_draw(const bContext *C, ARegion *ar)
+{
+
+}
+
+static void terrain_header_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
+{
+
+}
+
 static void terrain_header_area_init(wmWindowManager *UNUSED(wm), ARegion *ar)
 {
 	ED_region_header_init(ar);
@@ -122,27 +240,76 @@ void ED_spacetype_terrain()
 	ARegionType *art;
 
 	st->spaceid = SPACE_TERRAIN;
-	strncpy(st->name, "Tutorial", BKE_ST_MAXNAME);
+	strncpy(st->name, "Terrain", BKE_ST_MAXNAME);
 
 	st->new = terrain_new;
+	st->free = terrain_free;
+	st->init = terrain_init;
+	st->listener = terrain_listener;
+	st->duplicate = terrain_duplicate;
+	st->operatortypes = terrain_operatortypes;
+	st->keymap = terrain_keymap;
+	st->dropboxes = terrain_dropboxes;
+	st->context = terrain_context;
 
 	/* regions: main window */
 	art = MEM_callocN(sizeof(ARegionType), "spacetype tutorial region");
 	art->regionid = RGN_TYPE_WINDOW;
-
-	art->init = terrain_main_area_init;
+	art->keymapflag = ED_KEYMAP_VIEW2D;
 	art->draw = terrain_main_area_draw;
-
+	art->init = terrain_main_area_init;
+	art->exit = terrain_main_area_exit;
+	art->free = terrain_main_area_free;
+	art->duplicate = terrain_main_area_duplicate;
+	art->listener = terrain_main_area_listener;
+	art->cursor = terrain_main_area_cursor;
+	art->lock = 1; /* can become flag, see BKE_spacedata_draw_locks */
 	BLI_addhead(&st->regiontypes, art);
 
+	/* regions: listview/buttons */
+	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain buttons region");
+	art->regionid = RGN_TYPE_UI;
+	art->prefsizex = 180; /* XXX */
+	art->keymapflag = ED_KEYMAP_UI | ED_KEYMAP_FRAMES;
+	art->listener = terrain_buttons_area_listener;
+	art->init = terrain_buttons_area_init;
+	art->draw = terrain_buttons_area_draw;
+	BLI_addhead(&st->regiontypes, art);
+
+	terrain_buttons_register(art);
+
+	/* regions: tool(bar) */
+	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain tools region");
+	art->regionid = RGN_TYPE_TOOLS;
+	art->prefsizex = 160; /* XXX */
+	art->prefsizey = 50; /* XXX */
+	art->keymapflag = ED_KEYMAP_UI | ED_KEYMAP_FRAMES;
+	art->listener = terrain_tools_area_listener;
+	art->init = terrain_tools_area_init;
+	art->draw = terrain_tools_area_draw;
+	BLI_addhead(&st->regiontypes, art);
+
+	/* regions: tool properties */
+	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain tool properties region");
+	art->regionid = RGN_TYPE_TOOL_PROPS;
+	art->prefsizex = 0;
+	art->prefsizey = 120;
+	art->keymapflag = ED_KEYMAP_UI | ED_KEYMAP_FRAMES;
+	art->listener = terrain_props_area_listener;
+	art->init = terrain_props_area_init;
+	art->draw = terrain_props_area_draw;
+	BLI_addhead(&st->regiontypes, art);
+
+	terrain_tool_props_register(art);
+
 	/* regions: header */
-	art = MEM_callocN(sizeof(ARegionType), "spacetype tutorial region");
+	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain header region");
 	art->regionid = RGN_TYPE_HEADER;
 	art->prefsizey = HEADERY;
-	art->keymapflag = ED_KEYMAP_UI | ED_KEYMAP_VIEW2D | ED_KEYMAP_HEADER;
+	art->keymapflag = ED_KEYMAP_UI | ED_KEYMAP_VIEW2D | ED_KEYMAP_FRAMES | ED_KEYMAP_HEADER;
+	art->listener = terrain_header_area_listener;
 	art->init = terrain_header_area_init;
 	art->draw = terrain_header_area_draw;
-
 	BLI_addhead(&st->regiontypes, art);
 
 	BKE_spacetype_register(st);

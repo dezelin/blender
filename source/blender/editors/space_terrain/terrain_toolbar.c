@@ -25,15 +25,30 @@
 * ***** END GPL LICENSE BLOCK *****
 */
 
-#ifndef __TERRAIN_INTERN_H__
-#define __TERRAIN_INTERN_H__
+#include <string.h>
 
+#include "DNA_text_types.h"
+
+#include "MEM_guardedalloc.h"
+
+#include "BLI_blenlib.h"
+
+#include "BKE_context.h"
 #include "BKE_screen.h"
 
-/* terrain_buttons.c */
-void terrain_buttons_register(ARegionType *art);
+#include "ED_space_api.h"
+#include "ED_screen.h"
 
-/* terrain_toolbar.c */
-void terrain_tool_props_register(ARegionType *art);
+#include "BIF_gl.h"
 
-#endif /* __TERRAIN_INTERN_H__ */
+#include "WM_api.h"
+#include "WM_types.h"
+
+#include "UI_interface.h"
+#include "UI_resources.h"
+#include "UI_view2d.h"
+
+void terrain_tool_props_register(ARegionType *art)
+{
+
+}
