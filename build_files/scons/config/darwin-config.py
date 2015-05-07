@@ -122,6 +122,8 @@ BF_BULLET = '#extern/bullet2/src'
 BF_BULLET_INC = '${BF_BULLET}'
 BF_BULLET_LIB = 'extern_bullet'
 
+WITH_BF_TERRAIN = True
+
 WITH_BF_FFTW3 = True
 BF_FFTW3 = LIBDIR + '/fftw3'
 BF_FFTW3_INC = '${BF_FFTW3}/include'

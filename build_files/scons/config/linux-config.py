@@ -90,6 +90,8 @@ BF_BULLET = '#extern/bullet2/src'
 BF_BULLET_INC = '${BF_BULLET}'
 BF_BULLET_LIB = 'extern_bullet'
 
+WITH_BF_TERRAIN = True
+
 WITH_BF_ELTOPO = False
 BF_LAPACK = '/usr'
 BF_LAPACK_LIB = 'lapack3gf blas clapack'

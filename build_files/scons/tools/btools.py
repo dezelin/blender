@@ -129,6 +129,7 @@ def validate_arguments(args, bc):
             'WITH_BF_ICONV', 'BF_ICONV', 'BF_ICONV_INC', 'BF_ICONV_LIB', 'BF_ICONV_LIBPATH',
             'WITH_BF_GAMEENGINE',
             'WITH_BF_BULLET', 'BF_BULLET', 'BF_BULLET_INC', 'BF_BULLET_LIB',
+            'WITH_BF_TERRAIN',
             # 'WITH_BF_ELTOPO',  # now only available in a branch
             'BF_LAPACK', 'BF_LAPACK_LIB', 'BF_LAPACK_LIBPATH', 'BF_LAPACK_LIB_STATIC',
             'BF_WINTAB', 'BF_WINTAB_INC',
@@ -413,6 +414,9 @@ def read_opts(env, cfg, args):
         (BoolVariable('WITH_BF_GAMEENGINE', 'Build with gameengine' , False)),
 
         (BoolVariable('WITH_BF_BULLET', 'Use Bullet if true', True)),
+
+        (BoolVariable('WITH_BF_TERRAIN', 'Build with terrain', True)),
+
         # (BoolVariable('WITH_BF_ELTOPO', 'Use Eltopo collision library if true', False)),  # this is now only available in a branch
         ('BF_LAPACK', 'LAPACK base path', ''),
         ('BF_LAPACK_LIB', 'LAPACK library', ''),
