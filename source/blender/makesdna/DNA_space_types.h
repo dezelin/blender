@@ -1136,6 +1136,14 @@ typedef struct SpaceClip {
 	MaskSpaceInfo mask_info;
 } SpaceClip;
 
+/* Terrain editor */
+typedef struct SpaceTerrain {
+	SpaceLink *next, *prev;
+	ListBase regionbase;		 /* storage of regions for inactive spaces */
+	int spacetype;
+	char pad[4];
+} SpaceTerrain;
+
 /* SpaceClip->flag */
 typedef enum eSpaceClip_Flag {
 	SC_SHOW_MARKER_PATTERN      = (1 << 0),
@@ -1209,8 +1217,9 @@ typedef enum eSpace_Type {
 	SPACE_CONSOLE  = 18,
 	SPACE_USERPREF = 19,
 	SPACE_CLIP     = 20,
+	SPACE_TERRAIN  = 21,
 	
-	SPACEICONMAX = SPACE_CLIP
+	SPACEICONMAX = SPACE_TERRAIN
 } eSpace_Type;
 
 /* use for function args */
