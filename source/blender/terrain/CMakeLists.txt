@@ -23,5 +23,20 @@
 #
 # ***** END GPL LICENSE BLOCK *****
 
-add_subdirectory(blueprints)
-add_subdirectory(editors)
+set(INC
+	.
+)
+
+set(INC_SYS
+)
+
+set(SRC
+  intern/dummy.c
+  TE_dummy.h
+)
+
+if(WITH_INTERNATIONAL)
+	add_definitions(-DWITH_INTERNATIONAL)
+endif()
+
+blender_add_lib(bf_terrain "${SRC}" "${INC}" "${INC_SYS}")

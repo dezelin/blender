@@ -15,32 +15,15 @@
 * along with this program; if not, write to the Free Software Foundation,
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
-* The Original Code is Copyright (C) 2015 Aleksandar Dezelin.
+* The Original Code is Copyright (C) 2015 Aleksandar Dezelin
 * All rights reserved.
 *
-* The Original Code is: all of this file.
 *
 * Contributor(s): none yet.
 *
 * ***** END GPL LICENSE BLOCK *****
 */
 
-#include "BP_blueprintgroup.h"
-
-#include <malloc.h>
-#include <memory.h>
-#include <string.h>
-
-BP_BlueprintGroup *BP_blueprint_group_create(void *ctx)
+void ED_spacetype_terrain()
 {
-	BP_BlueprintGroup *bpg = (BP_BlueprintGroup*)malloc(sizeof(BP_BlueprintGroup));
-	if (!bpg) return NULL;
-
-	memset(bpg, 0, sizeof(*bpg));
-	return bpg;
-}
-
-void BP_blueprint_group_destroy(BP_BlueprintGroup *bpg)
-{
-	free(bpg);
 }

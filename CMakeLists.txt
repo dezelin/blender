@@ -222,13 +222,7 @@ option(WITH_GAMEENGINE    "Enable Game Engine" ${_init_GAMEENGINE})
 option(WITH_PLAYER        "Build Player" OFF)
 option(WITH_OPENCOLORIO   "Enable OpenColorIO color management" ${_init_OPENCOLORIO})
 option(WITH_COMPOSITOR    "Enable the tile based nodal compositor" ON)
-
-option(WITH_BLUEPRINTS    "Enable Blueprints" ON)
-option(WITH_TERRAINENGINE "Enable Terrain Engine" ON)
-
-if(WITH_TERRAINENGINE)
-  set(WITH_BLUEPRINTS ON)
-endif()
+option(WITH_TERRAIN       "Enable Terrain Engine" ON)
 
 # GHOST Windowing Library Options
 option(WITH_GHOST_DEBUG   "Enable debugging output for the GHOST library" OFF)

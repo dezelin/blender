@@ -655,17 +655,10 @@ macro(SETUP_BLENDER_SORTED_LIBS)
 		list_insert_after(BLENDER_SORTED_LIBS "ge_logic_ngnetwork" "extern_bullet")
 	endif()
 	
-	if(WITH_BLUEPRINTS)
-		list(APPEND BLENDER_SORTED_LIBS bf_blueprints)
-	endif()
-		
 	if(WITH_TERRAIN)
-		list(APPEND BLENDER_SORTED_LIBS 
-			te_blueprints
-			te_editor_blueprint)
+		list(APPEND BLENDER_SORTED_LIBS bf_terrain bf_editor_space_terrain)
 	endif()
 	
-
 	foreach(SORTLIB ${BLENDER_SORTED_LIBS})
 		set(REMLIB ${SORTLIB})
 		foreach(SEARCHLIB ${BLENDER_LINK_LIBS})

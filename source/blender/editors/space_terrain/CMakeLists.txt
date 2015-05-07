@@ -14,34 +14,44 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
-# The Original Code is Copyright (C) 2006, Blender Foundation
+# The Original Code is Copyright (C) 2015, Aleksandar Dezelin
 # All rights reserved.
 #
 # The Original Code is: all of this file.
 #
-# Contributor(s): Jacques Beaurain.
+# Contributor(s): none yet.
 #
 # ***** END GPL LICENSE BLOCK *****
 
-# XXX allowing blenkernel and RNA includes in blenlib is a hack,
-# but needed in a few places atm (bpath.c for instance)
+
 set(INC
-	.
-	# ../blenkernel  # dont add this back!
-	#../makesdna
-	#../../../intern/guardedalloc
-	#../../../intern/atomic
-	#../../../extern/wcwidth
+  .
+	../include
+	../../makesdna
+	../../makesrna
+	../../windowmanager
+	../../../../intern/guardedalloc
+	../../../../intern/glew-mx
 )
 
 set(INC_SYS
-  .
+	${GLEW_INCLUDE_PATH}
 )
 
 set(SRC
-	intern/dummy.c
-	
-	BP_dummy.h
+	space_terrain.c
+	terrain_internal.c
+	terrain_ops.c
+	terrain_update.c
+	terrain_view.c
+
+	terrain_intern.h
 )
 
-blender_add_lib(te_blueprints "${SRC}" "${INC}" "${INC_SYS}")
+add_definitions(${GL_DEFINITIONS})
+
+if(WITH_INTERNATIONAL)
+	add_definitions(-DWITH_INTERNATIONAL)
+endif()
+
+blender_add_lib(bf_editor_space_terrain "${SRC}" "${INC}" "${INC_SYS}")

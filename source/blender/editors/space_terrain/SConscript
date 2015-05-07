@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#
 # ***** BEGIN GPL LICENSE BLOCK *****
 #
 # This program is free software; you can redistribute it and/or
@@ -23,42 +25,25 @@
 #
 # ***** END GPL LICENSE BLOCK *****
 
-set(INC
-	.
-	../blenlib
-	../makesdna
-	../../blenlib
-)
+Import ('env')
 
-set(INC_SYS
-	.
-)
+sources = env.Glob('*.c')
 
-set(SRC
-	intern/blueprint.c
-	intern/blueprintconn.c
-	intern/blueprintdescription.c
-	intern/blueprintevent.c
-	intern/blueprintgroup.c
-	intern/blueprintfunc.c
-	intern/blueprintinputport.c
-	intern/blueprintnode.c
-	intern/blueprintport.c
-	intern/blueprintoutputport.c
-	intern/blueprintsettings.c
-	intern/blueprintvar.c
-	BP_blueprint.h
-	BP_blueprintconn.h
-	BP_blueprintdescription.h
-	BP_blueprintevent.h
-	BP_blueprintgroup.h
-	BP_blueprintfunc.h
-	BP_blueprintinputport.h
-	BP_blueprintnode.h
-	BP_blueprintoutputport.h
-	BP_blueprintport.h
-	BP_blueprintsettings.h
-	BP_blueprintvar.h
-)
+incs = [
+    env['BF_GLEW_INC'],
+    '.',
+    '../include',
+    '../../../makesdna',
+    '../../../makesrna',
+    '../../../windowmanager',
+    '../../../../../intern/guardedalloc',
+    '../../../../../intern/glew-mx',
+    ]
+incs = ' '.join(incs)
 
-blender_add_lib(bf_blueprints "${SRC}" "${INC}" "${INC_SYS}")
+defs = env['BF_GL_DEFINITIONS']
+
+if env['WITH_BF_INTERNATIONAL']:
+    defs.append('WITH_INTERNATIONAL')
+
+env.BlenderLib('bf_editor_space_terrain', sources, Split(incs), defs, libtype=['core'], priority=[45])

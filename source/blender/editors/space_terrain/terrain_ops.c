@@ -25,13 +25,17 @@
 * ***** END GPL LICENSE BLOCK *****
 */
 
-#ifndef __ED_TERRAIN_BLUEPRINT_H__
-#define __ED_TERRAIN_BLUEPRINT_H__
+#include "MEM_guardedalloc.h"
+#include "DNA_windowmanager_types.h"
 
-struct wmKeyConfig;
+void ED_operatortypes_terrain()
+{
+}
 
-void ED_operatortypes_terrain_blueprint();
-void ED_operatormacros_terrain_blueprint();
-void ED_keymap_terrain_blueprint(wmKeyConfig *keyconf);
+void ED_operatormacros_terrain()
+{
+}
 
-#endif /* __ED_TERRAIN_BLUEPRINT_H__ */
+void ED_keymap_terrain(wmKeyConfig *keyconf)
+{
+}
