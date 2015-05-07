@@ -44,4 +44,4 @@ incs = ' '.join(incs)
 
 defs = ''
 
-env.BlenderLib ( 'bf_editors_space_api', sources, Split(incs), Split(defs), libtype=['core'], priority=[30] )
+env.BlenderLib ( 'bf_editor_space_api', sources, Split(incs), Split(defs), libtype=['core'], priority=[30] )

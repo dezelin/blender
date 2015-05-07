@@ -25,15 +25,13 @@
 * ***** END GPL LICENSE BLOCK *****
 */
 
-#ifndef __BP_BLUEPRINTGROUP_H__
-#define __BP_BLUEPRINTGROUP_H__
+#ifndef __ED_TERRAIN_H__
+#define __ED_TERRAIN_H__
 
-typedef struct BP_BlueprintGroup {
-	struct BP_BlueprintGroup *next, *prev;
-	void *ctx;
-} BP_BlueprintGroup;
+struct wmKeyConfig;
 
-BP_BlueprintGroup *BP_blueprint_group_create(void *ctx);
-void BP_blueprint_group_destroy(BP_BlueprintGroup *bpg);
+void ED_operatortypes_terrain();
+void ED_operatormacros_terrain();
+void ED_keymap_terrain(wmKeyConfig *keyconf);
 
-#endif /* __BP_BLUEPRINTGROUP_H__ */
+#endif /* __ED_TERRAIN_H__ */

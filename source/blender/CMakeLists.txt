@@ -79,6 +79,7 @@ set(SRC_DNA_INC
 	${CMAKE_CURRENT_SOURCE_DIR}/makesdna/DNA_sound_types.h
 	${CMAKE_CURRENT_SOURCE_DIR}/makesdna/DNA_space_types.h
 	${CMAKE_CURRENT_SOURCE_DIR}/makesdna/DNA_speaker_types.h
+	${CMAKE_CURRENT_SOURCE_DIR}/makesdna/DNA_terrain_types.h
 	${CMAKE_CURRENT_SOURCE_DIR}/makesdna/DNA_text_types.h
 	${CMAKE_CURRENT_SOURCE_DIR}/makesdna/DNA_texture_types.h
 	${CMAKE_CURRENT_SOURCE_DIR}/makesdna/DNA_userdef_types.h
@@ -152,10 +153,6 @@ if(WITH_FREESTYLE)
 	add_subdirectory(freestyle)
 endif()
 
-if(WITH_BLUEPRINTS)
-  add_subdirectory(blueprints)
-endif()
-
-if(WITH_TERRAINENGINE)
+if(WITH_TERRAIN)
   add_subdirectory(terrain)
 endif()

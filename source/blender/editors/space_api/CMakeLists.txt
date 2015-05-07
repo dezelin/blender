@@ -26,7 +26,6 @@ set(INC
 	../../makesdna
 	../../makesrna
 	../../windowmanager
-	../../../terrainengine/editors/include
 	../../../../intern/guardedalloc
 )
 

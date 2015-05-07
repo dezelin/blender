@@ -523,7 +523,7 @@ if 'blendernogame' in B.targets:
 
 if not env['WITH_BF_GAMEENGINE']:
     env['WITH_BF_PLAYER'] = False
-
+    
 # build without elbeem (fluidsim)?
 if env['WITH_BF_FLUID'] == 1:
     env['CPPFLAGS'].append('-DWITH_MOD_FLUID')

@@ -25,23 +25,7 @@
 * ***** END GPL LICENSE BLOCK *****
 */
 
-#include "BP_blueprintconn.h"
+#ifndef __TERRAIN_INTERN_H__
+#define __TERRAIN_INTERN_H__
 
-#include <malloc.h>
-#include <memory.h>
-#include <string.h>
-
-BP_BlueprintConn *BP_blueprint_conn_create(void *ctx)
-{
-	BP_BlueprintConn *bpc = (BP_BlueprintConn*)malloc(sizeof(BP_BlueprintConn));
-	if (!bpc) return NULL;
-
-	memset(bpc, 0, sizeof(*bpc));
-	bpc->ctx = ctx;
-	return bpc;
-}
-
-void BP_blueprint_conn_destroy(BP_BlueprintConn *bpc)
-{
-	free(bpc);
-}
+#endif /* __TERRAIN_INTERN_H__ */
