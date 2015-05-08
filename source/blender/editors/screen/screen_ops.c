@@ -213,6 +213,11 @@ int ED_operator_region_view3d_active(bContext *C)
 	return false;
 }
 
+int ED_operator_terrain_active(bContext *C)
+{
+	return ed_spacetype_test(C, SPACE_TERRAIN);
+}
+
 /* generic for any view2d which uses anim_ops */
 int ED_operator_animview_active(bContext *C)
 {
