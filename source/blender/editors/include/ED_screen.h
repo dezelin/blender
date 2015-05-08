@@ -155,7 +155,7 @@ int     ED_operator_nla_active(struct bContext *C);
 int     ED_operator_logic_active(struct bContext *C);
 int     ED_operator_info_active(struct bContext *C);
 int     ED_operator_console_active(struct bContext *C);
-
+int     ED_operator_terrain_active(struct bContext *C);
 
 int     ED_operator_object_active(struct bContext *C);
 int     ED_operator_object_active_editable(struct bContext *C);
