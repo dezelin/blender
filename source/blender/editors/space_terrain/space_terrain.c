@@ -30,7 +30,7 @@
 
 #include <string.h>
 
-#include "DNA_text_types.h"
+#include "DNA_terrain_types.h"
 
 #include "MEM_guardedalloc.h"
 
