@@ -28,12 +28,17 @@
 #ifndef __TERRAIN_INTERN_H__
 #define __TERRAIN_INTERN_H__
 
-#include "BKE_screen.h"
+typedef struct ARegion ARegion;
+typedef struct ARegionType ARegionType;
+typedef struct wmWindowManager wmWindowManager;
 
 /* terrain_buttons.c */
 void terrain_buttons_register(ARegionType *art);
 
 /* terrain_toolbar.c */
 void terrain_tool_props_register(ARegionType *art);
+
+/* common */
+void add_default_keymap_handler(wmWindowManager *wm, ARegion *ar);
 
 #endif /* __TERRAIN_INTERN_H__ */
