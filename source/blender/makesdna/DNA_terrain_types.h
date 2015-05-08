@@ -87,6 +87,6 @@ typedef struct TE_Blueprint {
 
 typedef struct TE_Terrain {
 	TE_Blueprint *blueprint;
-};
+} TE_Terrain;
 
 #endif /* __DNA_TERRAIN_TYPES_H__ */
