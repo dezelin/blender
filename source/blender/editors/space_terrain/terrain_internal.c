@@ -24,3 +24,20 @@
 *
 * ***** END GPL LICENSE BLOCK *****
 */
+
+#include "terrain_intern.h"
+
+#include "DNA_screen_types.h"
+#include "DNA_space_types.h"
+#include "DNA_windowmanager_types.h"
+#include "WM_api.h"
+#include "WM_keymap.h"
+#include "WM_types.h"
+
+void add_default_keymap_handler(wmWindowManager *wm, ARegion *ar)
+{
+	wmKeyMap *keymap = WM_keymap_find(wm->defaultconf, "Terrain View Generic",
+		SPACE_TERRAIN, 0);
+	WM_event_add_keymap_handler(&ar->handlers, keymap);
+}
+

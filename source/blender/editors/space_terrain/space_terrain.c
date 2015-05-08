@@ -105,7 +105,6 @@ static void terrain_free(SpaceLink *sl)
 
 static void terrain_init(wmWindowManager *UNUSED(wm), ScrArea *UNUSED(sa))
 {
-
 }
 
 static void terrain_listener(bScreen *UNUSED(sc), ScrArea *sa, struct wmNotifier *wmn)
@@ -163,6 +162,7 @@ static void terrain_main_area_draw(const bContext *C, ARegion *ar)
 /* add handlers, stuff you only do once or on area/region changes */
 static void terrain_main_area_init(wmWindowManager *wm, ARegion *ar)
 {
+	add_default_keymap_handler(wm, ar);
 	UI_view2d_region_reinit(&ar->v2d, V2D_COMMONVIEW_CUSTOM, ar->winx, ar->winy);
 }
 
@@ -200,7 +200,7 @@ static void terrain_buttons_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(s
 /* add handlers, stuff you only do once or on area/region changes */
 static void terrain_buttons_area_init(wmWindowManager *wm, ARegion *ar)
 {
-
+	add_default_keymap_handler(wm, ar);
 }
 
 static void terrain_buttons_area_draw(const bContext *C, ARegion *ar)
@@ -215,7 +215,7 @@ static void terrain_tools_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa)
 
 static void terrain_tools_area_init(wmWindowManager *wm, ARegion *ar)
 {
-
+	add_default_keymap_handler(wm, ar);
 }
 
 static void terrain_tools_area_draw(const bContext *C, ARegion *ar)
@@ -230,7 +230,7 @@ static void terrain_props_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa)
 
 static void terrain_props_area_init(wmWindowManager *wm, ARegion *ar)
 {
-
+	add_default_keymap_handler(wm, ar);
 }
 
 static void terrain_props_area_draw(const bContext *C, ARegion *ar)
@@ -243,8 +243,9 @@ static void terrain_header_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa
 
 }
 
-static void terrain_header_area_init(wmWindowManager *UNUSED(wm), ARegion *ar)
+static void terrain_header_area_init(wmWindowManager *wm, ARegion *ar)
 {
+	add_default_keymap_handler(wm, ar);
 	ED_region_header_init(ar);
 }
 
@@ -255,7 +256,7 @@ static void terrain_header_area_draw(const bContext *C, ARegion *ar)
 
 void ED_spacetype_terrain()
 {
-	SpaceType *st = MEM_callocN(sizeof(SpaceType), "spacetype tutorial");
+	SpaceType *st = MEM_callocN(sizeof(SpaceType), "spacetype terrain");
 	ARegionType *art;
 
 	st->spaceid = SPACE_TERRAIN;
@@ -272,7 +273,7 @@ void ED_spacetype_terrain()
 	st->context = terrain_context;
 
 	/* regions: main window */
-	art = MEM_callocN(sizeof(ARegionType), "spacetype tutorial region");
+	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain region");
 	art->regionid = RGN_TYPE_WINDOW;
 	art->keymapflag = ED_KEYMAP_VIEW2D;
 	art->draw = terrain_main_area_draw;
