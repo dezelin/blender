@@ -386,6 +386,7 @@ typedef struct bTheme {
 	ThemeSpace tuserpref;
 	ThemeSpace tconsole;
 	ThemeSpace tclip;
+	ThemeSpace tterrain;
 	
 	/* 20 sets of bone colors for this theme */
 	ThemeWireColor tarm[20];
@@ -395,7 +396,7 @@ typedef struct bTheme {
 } bTheme;
 
 #define UI_THEMESPACE_START(btheme)  (CHECK_TYPE_INLINE(btheme, bTheme *),  &((btheme)->tbuts))
-#define UI_THEMESPACE_END(btheme)    (CHECK_TYPE_INLINE(btheme, bTheme *), (&((btheme)->tclip) + 1))
+#define UI_THEMESPACE_END(btheme)    (CHECK_TYPE_INLINE(btheme, bTheme *), (&((btheme)->tterrain) + 1))
 
 /* for the moment only the name. may want to store options with this later */
 typedef struct bAddon {
