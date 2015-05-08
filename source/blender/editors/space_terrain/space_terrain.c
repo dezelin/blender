@@ -56,7 +56,6 @@
 
 static SpaceLink *terrain_new(const bContext *C)
 {
-	ScrArea *sa = CTX_wm_area(C);
 	ARegion *ar;
 	SpaceTerrain *sterrain;
 
@@ -65,16 +64,36 @@ static SpaceLink *terrain_new(const bContext *C)
 
 	/* header */
 	ar = MEM_callocN(sizeof(ARegion), "header for terrain");
-
 	BLI_addtail(&sterrain->regionbase, ar);
 	ar->regiontype = RGN_TYPE_HEADER;
 	ar->alignment = RGN_ALIGN_BOTTOM;
 
+	/* toolshelf */
+	ar = MEM_callocN(sizeof(ARegion), "toolshelf for terrain");
+	BLI_addtail(&sterrain->regionbase, ar);
+	ar->regiontype = RGN_TYPE_TOOLS;
+	ar->alignment = RGN_ALIGN_LEFT;
+	ar->flag = RGN_FLAG_HIDDEN;
+
+	/* tool properties */
+	ar = MEM_callocN(sizeof(ARegion), "tool properties for terrain");
+	BLI_addtail(&sterrain->regionbase, ar);
+	ar->regiontype = RGN_TYPE_TOOL_PROPS;
+	ar->alignment = RGN_ALIGN_BOTTOM | RGN_SPLIT_PREV;
+	ar->flag = RGN_FLAG_HIDDEN;
+
+	/* buttons/list view */
+	ar = MEM_callocN(sizeof(ARegion), "buttons for terrain");
+	BLI_addtail(&sterrain->regionbase, ar);
+	ar->regiontype = RGN_TYPE_UI;
+	ar->alignment = RGN_ALIGN_RIGHT;
+	ar->flag = RGN_FLAG_HIDDEN;
+	
 	/* main area */
 	ar = MEM_callocN(sizeof(ARegion), "main area for terrain");
-
 	BLI_addtail(&sterrain->regionbase, ar);
 	ar->regiontype = RGN_TYPE_WINDOW;
+	ar->regiondata = MEM_callocN(sizeof(TE_Terrain), "terrain and blueprint data");
 
 	return (SpaceLink *)sterrain;
 }
