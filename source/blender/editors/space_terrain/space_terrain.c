@@ -205,7 +205,7 @@ static void terrain_buttons_area_init(wmWindowManager *wm, ARegion *ar)
 
 static void terrain_buttons_area_draw(const bContext *C, ARegion *ar)
 {
-
+	ED_region_panels(C, ar, 1, NULL, -1);
 }
 
 static void terrain_tools_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
@@ -220,7 +220,7 @@ static void terrain_tools_area_init(wmWindowManager *wm, ARegion *ar)
 
 static void terrain_tools_area_draw(const bContext *C, ARegion *ar)
 {
-
+	ED_region_panels(C, ar, 1, NULL, -1);
 }
 
 static void terrain_props_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
