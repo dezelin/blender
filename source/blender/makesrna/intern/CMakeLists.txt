@@ -84,6 +84,7 @@ set(DEFSRC
 	rna_sound.c
 	rna_space.c
 	rna_speaker.c
+	rna_terrain.c
 	rna_test.c
 	rna_text.c
 	rna_texture.c
@@ -119,6 +120,7 @@ set(APISRC
 	rna_sequencer_api.c
 	rna_sound_api.c
 	rna_space_api.c
+	rna_terrain_api.c
 	rna_text_api.c
 	rna_ui_api.c
 	rna_vfont_api.c
