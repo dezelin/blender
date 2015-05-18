@@ -93,7 +93,7 @@ static SpaceLink *terrain_new(const bContext *C)
 	ar = MEM_callocN(sizeof(ARegion), "main area for terrain");
 	BLI_addtail(&sterrain->regionbase, ar);
 	ar->regiontype = RGN_TYPE_WINDOW;
-	ar->regiondata = MEM_callocN(sizeof(TE_Terrain), "terrain and blueprint data");
+	ar->regiondata = MEM_callocN(sizeof(Terrain), "terrain and blueprint data");
 
 	return (SpaceLink *)sterrain;
 }

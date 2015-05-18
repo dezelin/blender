@@ -28,65 +28,66 @@
 
 #include "BLI_listbase.h"
 
-typedef struct TE_BlueprintVar {
-	struct TE_BlueprintVar *next, *prev;
-} TE_BlueprintVar;
+typedef struct TerrainBlueprintVar {
+	struct TerrainBlueprintVar *next, *prev;
+} TerrainBlueprintVar;
 
-typedef struct TE_BlueprintEvent {
-	struct TE_BlueprintEvent *next, *prev;
-} TE_BlueprintEvent;
+typedef struct TerrainBlueprintEvent {
+	struct TerrainBlueprintEvent *next, *prev;
+} TerrainBlueprintEvent;
 
-typedef struct TE_BlueprintFunc {
-	struct TE_BlueprintFunc *next, *prev;
-} TE_BlueprintFunc;
+typedef struct TerrainBlueprintFunc {
+	struct TerrainBlueprintFunc *next, *prev;
+} TerrainBlueprintFunc;
 
-typedef struct TE_BlueprintInputPort {
-	struct TE_BlueprintInputPort *next, *prev;
-} TE_BlueprintInputPort;
+typedef struct TerrainBlueprintInputPort {
+	struct TerrainBlueprintInputPort *next, *prev;
+} TerrainBlueprintInputPort;
 
-typedef struct TE_BlueprintOutputPort {
-	struct TE_BlueprintOutputPort *next, *prev;
-} TE_BlueprintOutputPort;
+typedef struct TerrainBlueprintOutputPort {
+	struct TerrainBlueprintOutputPort *next, *prev;
+} TerrainBlueprintOutputPort;
 
-typedef struct TE_BlueprintConn {
-	struct TE_BlueprintConn *next, *prev;
-} TE_BlueprintConn;
+typedef struct TerrainBlueprintConn {
+	struct TerrainBlueprintConn *next, *prev;
+} TerrainBlueprintConn;
 
-typedef struct TE_BlueprintNode {
-	struct TE_BlueprintNode *next, *prev;
+typedef struct TerrainBlueprintNode {
+	struct TerrainBlueprintNode *next, *prev;
 
 	/* TE_BlueprintInputPort is the base structure for this list */
 	ListBase inputs;
 	/* TE_BlueprintOutputPort is the base structure for this list */
 	ListBase outputs;
-} TE_BlueprintNode;
+} TerrainBlueprintNode;
 
-typedef struct TE_BlueprintSettings {
+typedef struct TerrainBlueprintSettings {
 	int dummy;
-} TE_BlueprintSettings;
+} TerrainBlueprintSettings;
 
-typedef struct TE_BlueprintDescription {
+typedef struct TerrainBlueprintDescription {
 	char *author;
-	char *authorEmail;
+	char *author_email;
 	char *copyright;
 	char *description;
 	char *license;
-} TE_BlueprintDescription;
+} TerrainBlueprintDescription;
 
-typedef struct TE_Blueprint {
+typedef struct TerrainBlueprint {
 	int type;
+	int pad0;
 	char *name;
-	TE_BlueprintDescription *description;
-	TE_BlueprintSettings *settings;
+	TerrainBlueprintDescription *description;
+	TerrainBlueprintSettings *settings;
 	ListBase nodes;
 	ListBase connections;
 	ListBase events;
 	ListBase variables;
 	ListBase functions;
-} TE_Blueprint;
+} TerrainBlueprint;
 
-typedef struct TE_Terrain {
-	TE_Blueprint *blueprint;
-} TE_Terrain;
+typedef struct Terrain {
+	TerrainBlueprint *blueprint;
+} Terrain;
 
 #endif /* __DNA_TERRAIN_TYPES_H__ */
