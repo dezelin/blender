@@ -25,6 +25,10 @@
 * ***** END GPL LICENSE BLOCK *****
 */
 
+#include "DNA_terrain_types.h"
+
+#include "BKE_terrain.h"
+
 #include "RNA_access.h"
 #include "RNA_define.h"
 #include "RNA_enum_types.h"
@@ -34,18 +38,141 @@
 #include "WM_api.h"
 #include "WM_types.h"
 
+EnumPropertyItem terrain_blueprint_type_items[] = {
+	{TE_TYPE_BLUEPRINT, "BLUEPRINT", 0, "Blueprint", "Terrain blueprint"},
+	{0, NULL, 0, NULL, NULL}
+};
+
+
 #ifdef RNA_RUNTIME
 
-#include "DNA_terrain_types.h"
+static PointerRNA rna_TerrainBlueprint_description_get(PointerRNA *ptr)
+{
+}
+
+static void rna_TerrainBlueprint_description_set(PointerRNA *ptr, PointerRNA value)
+{
+}
+
+static PointerRNA rna_TerrainBlueprint_settings_get(PointerRNA *ptr)
+{
+}
+
+static void rna_TerrainBlueprint_settings_set(PointerRNA *ptr, PointerRNA value)
+{
+}
 
 #else
 
-void RNA_def_terrain(BlenderRNA *brna)
+static void rna_def_terran_blueprint_settings(BlenderRNA *brna)
 {
 	StructRNA *srna;
 	PropertyRNA *prop;
 
-	//RNA_api_terrain(srna);
+	srna = RNA_def_struct(brna, "TerrainBlueprintSettings", NULL);
+	RNA_def_struct_ui_text(srna, "TerrainBlueprintSettings", "Terrain blueprint settings");
+	RNA_def_struct_ui_icon(srna, ICON_NONE);
+
+	prop = RNA_def_property(srna, "dummy", PROP_INT, PROP_NONE);
+	RNA_def_property_int_sdna(prop, NULL, "dummy");
+	RNA_def_property_ui_text(prop, "Dummy", "Dummy placeholder");
+	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
+}
+
+static void rna_def_terran_blueprint_description(BlenderRNA *brna)
+{
+	StructRNA *srna;
+	PropertyRNA *prop;
+
+	srna = RNA_def_struct(brna, "TerrainBlueprintDescription", NULL);
+	RNA_def_struct_ui_text(srna, "TerrainBlueprintDescription", "Terrain blueprint description");
+	RNA_def_struct_ui_icon(srna, ICON_NONE);
+
+	prop = RNA_def_property(srna, "author", PROP_STRING, PROP_NONE);
+	RNA_def_property_string_sdna(prop, NULL, "author");
+	RNA_def_property_ui_text(prop, "Author", "Blueprint author");
+	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
+
+	prop = RNA_def_property(srna, "author_email", PROP_STRING, PROP_NONE);
+	RNA_def_property_string_sdna(prop, NULL, "author_email");
+	RNA_def_property_ui_text(prop, "Email", "Blueprint author email address");
+	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
+
+	prop = RNA_def_property(srna, "copyright", PROP_STRING, PROP_NONE);
+	RNA_def_property_string_sdna(prop, NULL, "copyright");
+	RNA_def_property_ui_text(prop, "Copyright", "Blueprint copyright");
+	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
+
+	prop = RNA_def_property(srna, "description", PROP_STRING, PROP_NONE);
+	RNA_def_property_string_sdna(prop, NULL, "description");
+	RNA_def_property_ui_text(prop, "Description", "Blueprint short description");
+	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
+
+	prop = RNA_def_property(srna, "license", PROP_STRING, PROP_NONE);
+	RNA_def_property_string_sdna(prop, NULL, "license");
+	RNA_def_property_ui_text(prop, "License", "Blueprint copyright license");
+	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
+}
+
+static void rna_def_terrain_blueprint(BlenderRNA *brna)
+{
+	StructRNA *srna;
+	PropertyRNA *prop;
+
+	srna = RNA_def_struct(brna, "TerrainBlueprint", NULL);
+	RNA_def_struct_ui_text(srna, "TerrainBlueprint", "Terrain blueprint");
+	RNA_def_struct_ui_icon(srna, ICON_NONE);
+
+	prop = RNA_def_property(srna, "type", PROP_ENUM, PROP_NONE);
+	RNA_def_property_enum_items(prop, terrain_blueprint_type_items);
+	RNA_def_property_clear_flag(prop, PROP_EDITABLE);
+	RNA_def_property_ui_text(prop, "Type", "Terrain generator blueprint type");
+	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
+
+	prop = RNA_def_property(srna, "name", PROP_STRING, PROP_NONE);
+	RNA_def_property_string_sdna(prop, NULL, "name");
+	RNA_def_property_ui_text(prop, "Name", "Blueprint name");
+	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
+
+	prop = RNA_def_property(srna, "description", PROP_POINTER, PROP_NONE);
+	RNA_def_property_struct_type(prop, "TerrainBlueprintDescription");
+	RNA_def_property_pointer_sdna(prop, NULL, "description");
+	RNA_def_property_pointer_funcs(prop, "rna_TerrainBlueprint_description_get", 
+		"rna_TerrainBlueprint_description_set", NULL, NULL);
+	RNA_def_property_ui_text(prop, "Description", "Terrain blueprint description");
+
+	prop = RNA_def_property(srna, "settings", PROP_POINTER, PROP_NONE);
+	RNA_def_property_struct_type(prop, "TerrainBlueprintSettings");
+	RNA_def_property_pointer_sdna(prop, NULL, "settings");
+	RNA_def_property_pointer_funcs(prop, "rna_TerrainBlueprint_settings_get",
+		"rna_TerrainBlueprint_settings_set", NULL, NULL);
+	RNA_def_property_ui_text(prop, "Settings", "Terrain blueprint settings");
+}
+
+static void rna_def_terrain(BlenderRNA *brna)
+{
+	StructRNA *srna;
+	PropertyRNA *prop;
+
+	srna = RNA_def_struct(brna, "Terrain", NULL);
+	RNA_def_struct_ui_text(srna, "Terrain", "Terrain blueprint data block");
+	RNA_def_struct_ui_icon(srna, ICON_NONE);
+
+	prop = RNA_def_property(srna, "blueprint", PROP_POINTER, PROP_NONE);
+	RNA_def_property_struct_type(prop, "TerrainBlueprint");
+	RNA_def_property_pointer_sdna(prop, NULL, "blueprint");
+	RNA_def_property_flag(prop, PROP_NEVER_NULL);
+	RNA_def_property_ui_text(prop, "Terrain blueprint", "Terrain blueprint");
+
+	RNA_api_terrain(srna);
+}
+
+void RNA_def_terrain(BlenderRNA *brna)
+{
+	rna_def_terran_blueprint_settings(brna);
+	rna_def_terran_blueprint_description(brna);
+	rna_def_terrain_blueprint(brna);
+	rna_def_terrain(brna);
 }
 
 #endif /* RNA_RUNTIME */
