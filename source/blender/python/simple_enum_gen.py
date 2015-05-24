@@ -36,6 +36,7 @@ defs = """
     SPACE_SCRIPT, #Deprecated
     SPACE_TIME,
     SPACE_NODE,
+    SPACE_TERRAIN,
     SPACEICONMAX
 """
 

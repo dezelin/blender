@@ -34,6 +34,13 @@ enum {
 	TE_TYPE_BLUEPRINT = 0
 };
 
+struct Terrain;
+
+void			BKE_terrain_free(struct Terrain *terrain);
+void			BKE_terrain_unlink(struct Terrain *terrain);
+struct Terrain *BKE_terrain_add(struct Main *bmain, const char *name);
+struct Terrain *BKE_terrain_copy(struct Terrain *terrain);
+
 #ifdef __cplusplus
 }
 #endif

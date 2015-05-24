@@ -28,6 +28,8 @@
 
 #include "BLI_listbase.h"
 
+#include "DNA_ID.h"
+
 typedef struct TerrainBlueprintVar {
 	struct TerrainBlueprintVar *next, *prev;
 } TerrainBlueprintVar;
@@ -87,6 +89,7 @@ typedef struct TerrainBlueprint {
 } TerrainBlueprint;
 
 typedef struct Terrain {
+	ID id;
 	TerrainBlueprint *blueprint;
 } Terrain;
 

@@ -204,6 +204,7 @@ typedef struct PreviewImage {
 #define ID_SCR		MAKE_ID2('S', 'R') /* Screen */
 #define ID_SCRN		MAKE_ID2('S', 'N') /* (depreciated?) */
 #define ID_VF		MAKE_ID2('V', 'F') /* VFont (Vector Font) */
+#define ID_TRN		MAKE_ID2('T', 'R') /* Terrain */
 #define ID_TXT		MAKE_ID2('T', 'X') /* Text */
 #define ID_SPK		MAKE_ID2('S', 'K') /* Speaker */
 #define ID_SO		MAKE_ID2('S', 'O') /* Sound */

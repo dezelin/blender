@@ -25,7 +25,7 @@
 
 
 set(INC
-  .
+	.
 	../include
 	../interface
 	../../blenfont
@@ -45,7 +45,8 @@ set(INC_SYS
 
 set(SRC
 	space_terrain.c
-  terrain_buttons.c
+	terrain_buttons.c
+	terrain_header.c
 	terrain_internal.c
 	terrain_ops.c
 	terrain_toolbar.c
