@@ -2624,6 +2624,13 @@ void init_userdef_do_versions(void)
 		}
 	}
 
+	// TODO: Terrain editor theme versioning
+	if (U.versionfile < 275 || (U.versionfile == 275 && U.subversionfile < 1)) {
+		bTheme *btheme;
+		for (btheme = U.themes.first; btheme; btheme = btheme->next) {
+			btheme->tterrain = btheme->tv3d;
+		}
+	}
 		
 	if (U.pixelsize == 0.0f)
 		U.pixelsize = 1.0f;
