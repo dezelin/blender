@@ -78,6 +78,7 @@ typedef struct Main {
 	ListBase screen;
 	ListBase script;
 	ListBase vfont;
+	ListBase terrain;
 	ListBase text;
 	ListBase speaker;
 	ListBase sound;

@@ -64,6 +64,7 @@
 #include "BKE_texture.h"
 #include "BKE_scene.h"
 #include "BKE_sound.h"
+#include "BKE_terrain.h"
 #include "BKE_text.h"
 #include "BKE_action.h"
 #include "BKE_group.h"
@@ -104,6 +105,7 @@
 #include "DNA_movieclip_types.h"
 #include "DNA_mask_types.h"
 #include "DNA_gpencil_types.h"
+#include "DNA_terrain_types.h"
 
 #include "ED_screen.h"
 
@@ -571,6 +573,19 @@ static void rna_Main_sounds_remove(Main *bmain, ReportList *reports, PointerRNA 
 	}
 }
 
+static Terrain *rna_Main_terrains_new(Main *bmain, const char *name)
+{
+	return BKE_terrain_add(bmain, name);
+}
+
+static void rna_Main_terrains_remove(Main *bmain, PointerRNA *terrain_ptr)
+{
+	Terrain *terrain = terrain_ptr->data;
+	BKE_terrain_unlink(terrain);
+	BKE_libblock_free(bmain, terrain);
+	RNA_POINTER_INVALIDATE(terrain_ptr);
+}
+
 static Text *rna_Main_texts_new(Main *bmain, const char *name)
 {
 	return BKE_text_add(bmain, name);
@@ -766,6 +781,7 @@ static void rna_Main_worlds_tag(Main *bmain, int value) { BKE_main_id_tag_listba
 static void rna_Main_groups_tag(Main *bmain, int value) { BKE_main_id_tag_listbase(&bmain->group, value); }
 // static void rna_Main_shape_keys_tag(Main *bmain, int value) { BKE_main_id_tag_listbase(&bmain->key, value); }
 // static void rna_Main_scripts_tag(Main *bmain, int value) { BKE_main_id_tag_listbase(&bmain->script, value); }
+static void rna_Main_terrains_tag(Main *bmain, int value) { BKE_main_id_tag_listbase(&bmain->terrain, value); }
 static void rna_Main_texts_tag(Main *bmain, int value) { BKE_main_id_tag_listbase(&bmain->text, value); }
 static void rna_Main_speakers_tag(Main *bmain, int value) { BKE_main_id_tag_listbase(&bmain->speaker, value); }
 static void rna_Main_sounds_tag(Main *bmain, int value) { BKE_main_id_tag_listbase(&bmain->sound, value); }
@@ -797,6 +813,7 @@ static int rna_Main_textures_is_updated_get(PointerRNA *ptr) { return DAG_id_typ
 static int rna_Main_brushes_is_updated_get(PointerRNA *ptr) { return DAG_id_type_tagged(ptr->data, ID_BR) != 0; }
 static int rna_Main_worlds_is_updated_get(PointerRNA *ptr) { return DAG_id_type_tagged(ptr->data, ID_WO) != 0; }
 static int rna_Main_groups_is_updated_get(PointerRNA *ptr) { return DAG_id_type_tagged(ptr->data, ID_GR) != 0; }
+static int rna_Main_terrains_is_updated_get(PointerRNA *ptr) { return DAG_id_type_tagged(ptr->data, ID_TRN) != 0; }
 static int rna_Main_texts_is_updated_get(PointerRNA *ptr) { return DAG_id_type_tagged(ptr->data, ID_TXT) != 0; }
 static int rna_Main_speakers_is_updated_get(PointerRNA *ptr) { return DAG_id_type_tagged(ptr->data, ID_SPK) != 0; }
 static int rna_Main_sounds_is_updated_get(PointerRNA *ptr) { return DAG_id_type_tagged(ptr->data, ID_SO) != 0; }
@@ -1547,6 +1564,41 @@ void RNA_def_main_speakers(BlenderRNA *brna, PropertyRNA *cprop)
 	prop = RNA_def_property(srna, "is_updated", PROP_BOOLEAN, PROP_NONE);
 	RNA_def_property_clear_flag(prop, PROP_EDITABLE);
 	RNA_def_property_boolean_funcs(prop, "rna_Main_speakers_is_updated_get", NULL);
+}
+
+void RNA_def_main_terrains(BlenderRNA *brna, PropertyRNA *cprop)
+{
+	StructRNA *srna;
+	FunctionRNA *func;
+	PropertyRNA *parm;
+	PropertyRNA *prop;
+
+	RNA_def_property_srna(cprop, "BlendDataTerrains");
+	srna = RNA_def_struct(brna, "BlendDataTerrains", NULL);
+	RNA_def_struct_sdna(srna, "Main");
+	RNA_def_struct_ui_text(srna, "Main Terrains", "Collection of terrains");
+
+	func = RNA_def_function(srna, "new", "rna_Main_terrains_new");
+	RNA_def_function_ui_description(func, "Add a new terrain to the main database");
+	parm = RNA_def_string(func, "name", "Terrain", 0, "", "New name for the datablock");
+	RNA_def_property_flag(parm, PROP_REQUIRED);
+	/* return type */
+	parm = RNA_def_pointer(func, "terrain", "Terrain", "", "New terrain datablock");
+	RNA_def_function_return(func, parm);
+
+	func = RNA_def_function(srna, "remove", "rna_Main_terrains_remove");
+	RNA_def_function_ui_description(func, "Remove a terrain from the current blendfile");
+	parm = RNA_def_pointer(func, "terrain", "Terrain", "", "Terrain to remove");
+	RNA_def_property_flag(parm, PROP_REQUIRED | PROP_NEVER_NULL | PROP_RNAPTR);
+	RNA_def_property_clear_flag(parm, PROP_THICK_WRAP);
+
+	func = RNA_def_function(srna, "tag", "rna_Main_terrains_tag");
+	parm = RNA_def_boolean(func, "value", 0, "Value", "");
+	RNA_def_property_flag(parm, PROP_REQUIRED);
+
+	prop = RNA_def_property(srna, "is_updated", PROP_BOOLEAN, PROP_NONE);
+	RNA_def_property_clear_flag(prop, PROP_EDITABLE);
+	RNA_def_property_boolean_funcs(prop, "rna_Main_terrains_is_updated_get", NULL);
 }
 
 void RNA_def_main_texts(BlenderRNA *brna, PropertyRNA *cprop)

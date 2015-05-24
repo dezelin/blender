@@ -912,6 +912,7 @@ void uiTemplateRunningJobs(uiLayout *layout, struct bContext *C);
 void UI_but_func_operator_search(uiBut *but);
 void uiTemplateOperatorSearch(uiLayout *layout);
 void uiTemplateHeader3D(uiLayout *layout, struct bContext *C);
+void uiTemplateHeaderTerrain(uiLayout *layout, struct bContext *C);
 void uiTemplateEditModeSelection(uiLayout *layout, struct bContext *C);
 void uiTemplateReportsBanner(uiLayout *layout, struct bContext *C);
 void uiTemplateKeymapItemProperties(uiLayout *layout, struct PointerRNA *ptr);

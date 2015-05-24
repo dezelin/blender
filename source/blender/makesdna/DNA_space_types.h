@@ -1144,6 +1144,9 @@ typedef struct SpaceClip {
 typedef struct SpaceTerrain {
 	SpaceLink *next, *prev;
 	ListBase regionbase;		 /* storage of regions for inactive spaces */
+
+	struct Terrain *terrain;
+
 	int spacetype;
 	char pad[4];
 } SpaceTerrain;

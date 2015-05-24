@@ -489,6 +489,8 @@ ListBase *which_libbase(Main *mainlib, short type)
 			return &(mainlib->screen);
 		case ID_VF:
 			return &(mainlib->vfont);
+		case ID_TRN:
+			return &(mainlib->terrain);
 		case ID_TXT:
 			return &(mainlib->text);
 		case ID_SCRIPT:
@@ -601,6 +603,7 @@ int set_listbasepointers(Main *main, ListBase **lb)
 	lb[a++] = &(main->lamp);
 	lb[a++] = &(main->camera);
 
+	lb[a++] = &(main->terrain);
 	lb[a++] = &(main->text);
 	lb[a++] = &(main->sound);
 	lb[a++] = &(main->group);

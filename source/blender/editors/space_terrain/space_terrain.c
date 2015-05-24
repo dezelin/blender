@@ -100,7 +100,6 @@ static SpaceLink *terrain_new(const bContext *C)
 
 static void terrain_free(SpaceLink *sl)
 {
-
 }
 
 static void terrain_init(wmWindowManager *UNUSED(wm), ScrArea *UNUSED(sa))
@@ -109,11 +108,13 @@ static void terrain_init(wmWindowManager *UNUSED(wm), ScrArea *UNUSED(sa))
 
 static void terrain_listener(bScreen *UNUSED(sc), ScrArea *sa, struct wmNotifier *wmn)
 {
+	ED_area_tag_redraw(sa);
 }
 
 static SpaceLink *terrain_duplicate(SpaceLink *sl)
 {
-	return NULL;
+	SpaceTerrain *sterrain = MEM_dupallocN(sl);
+	return (SpaceLink *)sterrain;
 }
 
 void terrain_operatortypes(void)
@@ -131,8 +132,21 @@ static void terrain_dropboxes(void)
 
 }
 
+const char *terrain_context_dir[] = { "terrain_blueprint", NULL };
+
 static int terrain_context(const bContext *C, const char *member, bContextDataResult *result)
 {
+	SpaceTerrain *st = CTX_wm_space_terrain(C);
+
+	if (CTX_data_dir(member)) {
+		CTX_data_dir_set(result, terrain_context_dir);
+		return 1;
+	}
+	else if (CTX_data_equals(member, "terrain_blueprint")) {
+		CTX_data_id_pointer_set(result, &st->terrain->id);
+		return 1;
+	}
+
 	return 0;
 }
 
@@ -162,8 +176,8 @@ static void terrain_main_area_draw(const bContext *C, ARegion *ar)
 /* add handlers, stuff you only do once or on area/region changes */
 static void terrain_main_area_init(wmWindowManager *wm, ARegion *ar)
 {
-	add_default_keymap_handler(wm, ar);
 	UI_view2d_region_reinit(&ar->v2d, V2D_COMMONVIEW_CUSTOM, ar->winx, ar->winy);
+	add_default_keymap_handler(wm, ar);
 }
 
 static void terrain_main_area_exit(wmWindowManager *wm, ARegion *ar)
@@ -184,7 +198,7 @@ static void *terrain_main_area_duplicate(void *poin)
 
 static void terrain_main_area_listener(bScreen *sc, ScrArea *sa, ARegion *ar, wmNotifier *wmn)
 {
-
+	ED_region_tag_redraw(ar);
 }
 
 static void terrain_main_area_cursor(wmWindow *win, ScrArea *UNUSED(sa), ARegion *UNUSED(ar))
@@ -194,12 +208,13 @@ static void terrain_main_area_cursor(wmWindow *win, ScrArea *UNUSED(sa), ARegion
 
 static void terrain_buttons_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
 {
-
+	ED_region_tag_redraw(ar);
 }
 
 /* add handlers, stuff you only do once or on area/region changes */
 static void terrain_buttons_area_init(wmWindowManager *wm, ARegion *ar)
 {
+	ED_region_panels_init(wm, ar);
 	add_default_keymap_handler(wm, ar);
 }
 
@@ -210,43 +225,45 @@ static void terrain_buttons_area_draw(const bContext *C, ARegion *ar)
 
 static void terrain_tools_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
 {
-
+	ED_region_tag_redraw(ar);
 }
 
 static void terrain_tools_area_init(wmWindowManager *wm, ARegion *ar)
 {
+	ED_region_panels_init(wm, ar);
 	add_default_keymap_handler(wm, ar);
 }
 
 static void terrain_tools_area_draw(const bContext *C, ARegion *ar)
 {
-	ED_region_panels(C, ar, 1, NULL, -1);
+	ED_region_panels(C, ar, 1, CTX_data_mode_string(C), -1);
 }
 
 static void terrain_props_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
 {
-
+	ED_region_tag_redraw(ar);
 }
 
 static void terrain_props_area_init(wmWindowManager *wm, ARegion *ar)
 {
+	ED_region_panels_init(wm, ar);
 	add_default_keymap_handler(wm, ar);
 }
 
 static void terrain_props_area_draw(const bContext *C, ARegion *ar)
 {
-
+	ED_region_panels(C, ar, 1, NULL, -1);
 }
 
 static void terrain_header_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
 {
-
+	ED_region_tag_redraw(ar);
 }
 
 static void terrain_header_area_init(wmWindowManager *wm, ARegion *ar)
 {
-	add_default_keymap_handler(wm, ar);
 	ED_region_header_init(ar);
+	add_default_keymap_handler(wm, ar);
 }
 
 static void terrain_header_area_draw(const bContext *C, ARegion *ar)
@@ -283,7 +300,6 @@ void ED_spacetype_terrain()
 	art->duplicate = terrain_main_area_duplicate;
 	art->listener = terrain_main_area_listener;
 	art->cursor = terrain_main_area_cursor;
-	art->lock = 1; /* can become flag, see BKE_spacedata_draw_locks */
 	BLI_addhead(&st->regiontypes, art);
 
 	/* regions: listview/buttons */
@@ -312,7 +328,7 @@ void ED_spacetype_terrain()
 	/* regions: tool properties */
 	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain tool properties region");
 	art->regionid = RGN_TYPE_TOOL_PROPS;
-	art->prefsizex = 0;
+	art->prefsizex = UI_COMPACT_PANEL_WIDTH;
 	art->prefsizey = 120;
 	art->keymapflag = ED_KEYMAP_UI | ED_KEYMAP_FRAMES;
 	art->listener = terrain_props_area_listener;
