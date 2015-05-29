@@ -2837,6 +2837,7 @@ if(FIRST_RUN)
 	info_cfg_option(WITH_CYCLES)
 	info_cfg_option(WITH_FREESTYLE)
 	info_cfg_option(WITH_OPENCOLORIO)
+    info_cfg_option(WITH_TERRAIN)
 
 	info_cfg_text("Compiler Options:")
 	info_cfg_option(WITH_BUILDINFO)
