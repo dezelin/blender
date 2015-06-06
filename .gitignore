@@ -32,3 +32,10 @@ Desktop.ini
 /doc/python_api/sphinx-in-tmp/
 /doc/python_api/sphinx-in/
 /doc/python_api/sphinx-out/
+
+# Ctags
+tags
+
+# Cscope
+cscope.out
+
