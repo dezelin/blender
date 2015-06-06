@@ -173,6 +173,7 @@ const char *BLF_translate_do_new_dataname(const char *msgctxt, const char *msgid
 #define BLF_I18NCONTEXT_ID_SEQUENCE             "Sequence"
 #define BLF_I18NCONTEXT_ID_SPEAKER              "Speaker"
 #define BLF_I18NCONTEXT_ID_SOUND                "Sound"
+#define BLF_I18NCONTEXT_ID_TERRAIN              "Terrain"
 #define BLF_I18NCONTEXT_ID_TEXTURE              "Texture"
 #define BLF_I18NCONTEXT_ID_TEXT                 "Text"
 #define BLF_I18NCONTEXT_ID_VFONT                "VFont"
@@ -225,6 +226,7 @@ typedef struct {
 	BLF_I18NCONTEXTS_ITEM(BLF_I18NCONTEXT_ID_SEQUENCE, "id_sequence"),                                                 \
 	BLF_I18NCONTEXTS_ITEM(BLF_I18NCONTEXT_ID_SPEAKER, "id_speaker"),                                                   \
 	BLF_I18NCONTEXTS_ITEM(BLF_I18NCONTEXT_ID_SOUND, "id_sound"),                                                       \
+	BLF_I18NCONTEXTS_ITEM(BLF_I18NCONTEXT_ID_TERRAIN, "id_terrain"),                                                   \
 	BLF_I18NCONTEXTS_ITEM(BLF_I18NCONTEXT_ID_TEXTURE, "id_texture"),                                                   \
 	BLF_I18NCONTEXTS_ITEM(BLF_I18NCONTEXT_ID_TEXT, "id_text"),                                                         \
 	BLF_I18NCONTEXTS_ITEM(BLF_I18NCONTEXT_ID_VFONT, "id_vfont"),                                                       \
