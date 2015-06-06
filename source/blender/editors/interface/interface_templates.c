@@ -357,6 +357,7 @@ static const char *template_id_browse_tip(StructRNA *type)
 			case ID_MSK: return N_("Browse Mask to be linked");
 			case ID_PAL: return N_("Browse Palette Data to be linked");
 			case ID_PC:  return N_("Browse Paint Curve Data to be linked");
+            case ID_TRN: return N_("Browse Terrain Data to be linked");
 		}
 	}
 	return N_("Browse ID data to be linked");
@@ -398,6 +399,7 @@ static const char *template_id_context(StructRNA *type)
 			case ID_MSK: return BLF_I18NCONTEXT_ID_MASK;
 			case ID_PAL: return BLF_I18NCONTEXT_ID_PALETTE;
 			case ID_PC:  return BLF_I18NCONTEXT_ID_PAINTCURVE;
+            case ID_TRN: return BLF_I18NCONTEXT_ID_TERRAIN;
 		}
 	}
 	return BLF_I18NCONTEXT_DEFAULT;
@@ -520,6 +522,7 @@ static void template_ID(
 		                                 BLF_I18NCONTEXT_ID_CURVE,
 		                                 BLF_I18NCONTEXT_ID_METABALL,
 		                                 BLF_I18NCONTEXT_ID_MATERIAL,
+		                                 BLF_I18NCONTEXT_ID_TERRAIN,
 		                                 BLF_I18NCONTEXT_ID_TEXTURE,
 		                                 BLF_I18NCONTEXT_ID_IMAGE,
 		                                 BLF_I18NCONTEXT_ID_LATTICE,
