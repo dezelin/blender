@@ -28,17 +28,39 @@
 #ifndef __TERRAIN_INTERN_H__
 #define __TERRAIN_INTERN_H__
 
-typedef struct ARegion ARegion;
-typedef struct ARegionType ARegionType;
-typedef struct wmWindowManager wmWindowManager;
+struct ARegion;
+struct ARegionType;
+struct bContext;
+struct wmWindowManager;
+struct wmOperatorType;
 
 /* terrain_buttons.c */
-void terrain_buttons_register(ARegionType *art);
+void terrain_buttons_register(struct ARegionType *art);
 
 /* terrain_toolbar.c */
-void terrain_tool_props_register(ARegionType *art);
+void terrain_tool_props_register(struct ARegionType *art);
 
 /* common */
-void add_default_keymap_handler(wmWindowManager *wm, ARegion *ar);
+void add_default_keymap_handler(struct wmWindowManager *wm, struct ARegion *ar);
+
+
+/*
+ * Operators
+ */
+
+/* utils */
+int ED_operator_region_terrain_active(struct bContext *C);
+
+/* Generator devices ops  */
+void TERRAIN_OT_generators_layout(struct wmOperatorType *ot);
+void TERRAIN_OT_generators_constant(struct wmOperatorType *ot);
+void TERRAIN_OT_generators_gradient(struct wmOperatorType *ot);
+void TERRAIN_OT_generators_radial_grad(struct wmOperatorType *ot);
+void TERRAIN_OT_generators_voronoi(struct wmOperatorType *ot);
+void TERRAIN_OT_generators_perlin_noise(struct wmOperatorType *ot);
+void TERRAIN_OT_generators_file_input(struct wmOperatorType *ot);
+void TERRAIN_OT_generators_advanced_perlin(struct wmOperatorType *ot);
+void TERRAIN_OT_generators_color_generator(struct wmOperatorType *ot);
 
 #endif /* __TERRAIN_INTERN_H__ */
+
