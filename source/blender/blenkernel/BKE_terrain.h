@@ -34,6 +34,7 @@ enum {
 	TE_TYPE_BLUEPRINT = 0
 };
 
+struct Main;
 struct Terrain;
 
 void			BKE_terrain_free(struct Terrain *terrain);

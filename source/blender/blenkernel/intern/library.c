@@ -63,6 +63,7 @@
 #include "DNA_screen_types.h"
 #include "DNA_speaker_types.h"
 #include "DNA_sound_types.h"
+#include "DNA_terrain_types.h"
 #include "DNA_text_types.h"
 #include "DNA_vfont_types.h"
 #include "DNA_windowmanager_types.h"
@@ -111,6 +112,7 @@
 #include "BKE_sound.h"
 #include "BKE_screen.h"
 #include "BKE_scene.h"
+#include "BKE_terrain.h"
 #include "BKE_text.h"
 #include "BKE_texture.h"
 #include "BKE_world.h"
@@ -286,6 +288,8 @@ bool id_make_local(ID *id, bool test)
 			return false; /* not implemented */
 		case ID_LS:
 			return false; /* not implemented */
+        case ID_TRN:
+            return false; /* not implemented */
 	}
 
 	return false;
@@ -388,6 +392,9 @@ bool id_copy(ID *id, ID **newid, bool test)
 		case ID_LS:
 			if (!test) *newid = (ID *)BKE_linestyle_copy(G.main, (FreestyleLineStyle *)id);
 			return true;
+        case ID_TRN:
+            if (!test) *newid = (ID *)BKE_terrain_copy((Terrain *)id);
+            return true;
 	}
 	
 	return false;
@@ -489,8 +496,6 @@ ListBase *which_libbase(Main *mainlib, short type)
 			return &(mainlib->screen);
 		case ID_VF:
 			return &(mainlib->vfont);
-		case ID_TRN:
-			return &(mainlib->terrain);
 		case ID_TXT:
 			return &(mainlib->text);
 		case ID_SCRIPT:
@@ -525,6 +530,8 @@ ListBase *which_libbase(Main *mainlib, short type)
 			return &(mainlib->palettes);
 		case ID_PC:
 			return &(mainlib->paintcurves);
+		case ID_TRN:
+			return &(mainlib->terrain);
 	}
 	return NULL;
 }
@@ -752,6 +759,9 @@ static ID *alloc_libblock_notest(short type)
 		case ID_PC:
 			id = MEM_callocN(sizeof(PaintCurve), "Paint Curve");
 			break;
+        case ID_TRN:
+            id = MEM_callocN(sizeof(Terrain), "Terrain");
+            break;
 	}
 	return id;
 }
@@ -1040,6 +1050,9 @@ void BKE_libblock_free_ex(Main *bmain, void *idv, bool do_id_user)
 		case ID_PC:
 			BKE_paint_curve_free((PaintCurve *)id);
 			break;
+        case ID_TRN:
+            BKE_terrain_free((Terrain *)id);
+            break;
 	}
 
 	/* avoid notifying on removed data */

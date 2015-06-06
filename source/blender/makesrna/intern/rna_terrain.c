@@ -48,6 +48,7 @@ EnumPropertyItem terrain_blueprint_type_items[] = {
 
 static PointerRNA rna_TerrainBlueprint_description_get(PointerRNA *ptr)
 {
+    return *ptr;
 }
 
 static void rna_TerrainBlueprint_description_set(PointerRNA *ptr, PointerRNA value)
@@ -56,6 +57,7 @@ static void rna_TerrainBlueprint_description_set(PointerRNA *ptr, PointerRNA val
 
 static PointerRNA rna_TerrainBlueprint_settings_get(PointerRNA *ptr)
 {
+    return *ptr;
 }
 
 static void rna_TerrainBlueprint_settings_set(PointerRNA *ptr, PointerRNA value)

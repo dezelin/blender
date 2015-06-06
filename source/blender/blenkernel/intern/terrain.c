@@ -28,20 +28,21 @@
 #include "DNA_terrain_types.h"
 
 #include "BKE_library.h"
+#include "BKE_main.h"
 #include "BKE_terrain.h"
 
 
-void BKE_terrain_free(struct Terrain *terrain)
+void BKE_terrain_free(Terrain *terrain)
 {
 	
 }
 
-void BKE_terrain_unlink(struct Terrain *terrain)
+void BKE_terrain_unlink(Terrain *terrain)
 {
-
+    BKE_libblock_free(terrain, &terrain->id);
 }
 
-struct Terrain *BKE_terrain_add(struct Main *bmain, const char *name)
+Terrain *BKE_terrain_add(Main *bmain, const char *name)
 {
 	Terrain *tr;
 
@@ -49,10 +50,11 @@ struct Terrain *BKE_terrain_add(struct Main *bmain, const char *name)
 	return tr;
 }
 
-struct Terrain *BKE_terrain_copy(struct Terrain *terrain)
+Terrain *BKE_terrain_copy(Terrain *terrain)
 {
 	Terrain *tr;
 
 	tr = BKE_libblock_copy(&terrain->id);
-	return 0;
+	return tr;
 }
+
