@@ -31,7 +31,11 @@ extern "C" {
 #endif
 
 enum {
-	TE_TYPE_BLUEPRINT = 0
+	TE_MODE_BLUEPRINT = 0,
+    TE_MODE_EXPLORER,
+    TE_MODE_LAYOUT,
+    TE_MODE_VIEW3D,
+    TE_MODE_VIEW2D
 };
 
 struct Main;

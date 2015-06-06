@@ -59,20 +59,9 @@ static EnumPropertyItem *terrain_mode_set_itemsf(bContext *C,
 	if (!C) /* needed for docs */
 		return terrain_mode_items;
 
-	terrain = CTX_data_edit_terrain(C);
-	if (terrain) {
-		while (input->identifier) {
-			if (input->value == TE_TYPE_BLUEPRINT)
-			{
-				RNA_enum_item_add(&item, &totitem, input);
-			}
-
-			input++;
-		}
-	}
-	else {
-		/* We need at least this one! */
-		RNA_enum_items_add_value(&item, &totitem, input, TE_TYPE_BLUEPRINT);
+	while (input->identifier) {
+	    RNA_enum_item_add(&item, &totitem, input);
+		input++;
 	}
 
 	RNA_enum_item_end(&item, &totitem);
@@ -100,7 +89,7 @@ void TERRAIN_OT_mode_set(wmOperatorType *ot)
 	ot->flag = 0; /* no register/undo here, leave it to operators being called */
 	
 	ot->prop = RNA_def_enum(ot->srna, "mode", terrain_mode_items, 
-            TE_TYPE_BLUEPRINT, "Mode", "");
+            TE_MODE_BLUEPRINT, "Mode", "");
 	RNA_def_enum_funcs(ot->prop, terrain_mode_set_itemsf);
 	RNA_def_property_flag(ot->prop, PROP_SKIP_SAVE);
 
