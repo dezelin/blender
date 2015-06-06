@@ -66,7 +66,7 @@ struct MovieClip;
 struct MovieClipScopes;
 struct Mask;
 struct BLI_mempool;
-
+struct Terrain;
 
 /* SpaceLink (Base) ==================================== */
 

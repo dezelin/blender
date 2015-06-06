@@ -63,6 +63,7 @@ struct wmWindowManager;
 struct SpaceText;
 struct SpaceImage;
 struct SpaceClip;
+struct Terrain;
 struct SpaceTerrain;
 struct ID;
 
@@ -286,6 +287,7 @@ int CTX_data_visible_gpencil_layers(const bContext *C, ListBase *list);
 int CTX_data_editable_gpencil_layers(const bContext *C, ListBase *list);
 int CTX_data_editable_gpencil_strokes(const bContext *C, ListBase *list);
 
+struct Terrain *CTX_data_edit_terrain(const bContext *C);
 
 #ifdef __cplusplus
 }

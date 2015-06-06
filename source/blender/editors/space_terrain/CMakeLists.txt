@@ -50,7 +50,8 @@ set(SRC
 	terrain_internal.c
 	terrain_ops.c
 	terrain_ops_generators.c
-	terrain_toolbar.c
+	terrain_ops_misc.c
+    terrain_toolbar.c
 	terrain_update.c
 	terrain_view.c
 

@@ -29,6 +29,8 @@
 
 #include "DNA_windowmanager_types.h"
 
+#include "ED_screen.h"
+
 #include "WM_types.h"
 
 #include "terrain_intern.h"
@@ -53,7 +55,7 @@ static int generators_layout_modal(bContext *C, wmOperator *op,
 
 static int generators_layout_poll(struct bContext *C)
 {
-    return ED_operator_region_terrain_active(C);
+    return ED_operator_terrain_active(C);
 }
 
 static void generators_layout_cancel(bContext *C, wmOperator *op)
@@ -96,7 +98,7 @@ static int generators_constant_modal(bContext *C, wmOperator *op,
 
 static int generators_constant_poll(struct bContext *C)
 {
-    return ED_operator_region_terrain_active(C);
+    return ED_operator_terrain_active(C);
 }
 
 static void generators_constant_cancel(bContext *C, wmOperator *op)
@@ -139,7 +141,7 @@ static int generators_gradient_modal(bContext *C, wmOperator *op,
 
 static int generators_gradient_poll(struct bContext *C)
 {
-    return ED_operator_region_terrain_active(C);
+    return ED_operator_terrain_active(C);
 }
 
 static void generators_gradient_cancel(bContext *C, wmOperator *op)
@@ -182,7 +184,7 @@ static int generators_radial_grad_modal(bContext *C, wmOperator *op,
 
 static int generators_radial_grad_poll(struct bContext *C)
 {
-    return ED_operator_region_terrain_active(C);
+    return ED_operator_terrain_active(C);
 }
 
 static void generators_radial_grad_cancel(bContext *C, wmOperator *op)
@@ -225,7 +227,7 @@ static int generators_voronoi_modal(bContext *C, wmOperator *op,
 
 static int generators_voronoi_poll(struct bContext *C)
 {
-    return ED_operator_region_terrain_active(C);
+    return ED_operator_terrain_active(C);
 }
 
 static void generators_voronoi_cancel(bContext *C, wmOperator *op)
@@ -268,7 +270,7 @@ static int generators_perlin_noise_modal(bContext *C, wmOperator *op,
 
 static int generators_perlin_noise_poll(struct bContext *C)
 {
-    return ED_operator_region_terrain_active(C);
+    return ED_operator_terrain_active(C);
 }
 
 static void generators_perlin_noise_cancel(bContext *C, wmOperator *op)
@@ -311,7 +313,7 @@ static int generators_file_input_modal(bContext *C, wmOperator *op,
 
 static int generators_file_input_poll(struct bContext *C)
 {
-    return ED_operator_region_terrain_active(C);
+    return ED_operator_terrain_active(C);
 }
 
 static void generators_file_input_cancel(bContext *C, wmOperator *op)
@@ -354,7 +356,7 @@ static int generators_advanced_perlin_modal(bContext *C, wmOperator *op,
 
 static int generators_advanced_perlin_poll(struct bContext *C)
 {
-    return ED_operator_region_terrain_active(C);
+    return ED_operator_terrain_active(C);
 }
 
 static void generators_advanced_perlin_cancel(bContext *C, wmOperator *op)
@@ -397,7 +399,7 @@ static int generators_color_generator_modal(bContext *C, wmOperator *op,
 
 static int generators_color_generator_poll(struct bContext *C)
 {
-    return ED_operator_region_terrain_active(C);
+    return ED_operator_terrain_active(C);
 }
 
 static void generators_color_generator_cancel(bContext *C, wmOperator *op)
