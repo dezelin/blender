@@ -39,7 +39,11 @@
 #include "WM_types.h"
 
 EnumPropertyItem terrain_mode_items[] = {
-	{TE_TYPE_BLUEPRINT, "BLUEPRINT", ICON_TERRAIN_BLUEPRINT, "Blueprint", "Terrain blueprint"},
+	{TE_MODE_BLUEPRINT, "BLUEPRINT", ICON_TERRAIN_BLUEPRINT, "Blueprint", "Terrain blueprint"},
+	{TE_MODE_EXPLORER, "EXPLORER", ICON_TERRAIN_EXPLORER, "Explorer", "Terrain explorer"},
+	{TE_MODE_LAYOUT, "LAYOUT", ICON_TERRAIN_LAYOUT, "Layout", "Terrain layout"},
+	{TE_MODE_VIEW3D, "VIEW3D", ICON_TERRAIN_VIEW3D, "3D View", "Terrain 3D view"},
+	{TE_MODE_VIEW2D, "VIEW2D", ICON_TERRAIN_VIEW2D, "2D View", "Terrain 2D view"},
 	{0, NULL, 0, NULL, NULL}
 };
 
