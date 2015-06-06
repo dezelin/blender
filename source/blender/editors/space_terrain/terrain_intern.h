@@ -43,13 +43,12 @@ void terrain_tool_props_register(struct ARegionType *art);
 /* common */
 void add_default_keymap_handler(struct wmWindowManager *wm, struct ARegion *ar);
 
-
 /*
  * Operators
  */
 
-/* utils */
-int ED_operator_region_terrain_active(struct bContext *C);
+/* misc */
+void TERRAIN_OT_mode_set(struct wmOperatorType *ot);
 
 /* Generator devices ops  */
 void TERRAIN_OT_generators_layout(struct wmOperatorType *ot);

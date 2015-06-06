@@ -36,6 +36,9 @@
 
 void ED_operatortypes_terrain()
 {
+    /* Miscelaneous ops */
+    WM_operatortype_append(TERRAIN_OT_mode_set);
+
     /* Generator devices ops */
     WM_operatortype_append(TERRAIN_OT_generators_layout);
     WM_operatortype_append(TERRAIN_OT_generators_constant);

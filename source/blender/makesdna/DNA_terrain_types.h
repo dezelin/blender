@@ -91,6 +91,8 @@ typedef struct TerrainBlueprint {
 typedef struct Terrain {
 	ID id;
 	TerrainBlueprint *blueprint;
+    int mode;
+    int pad0;
 } Terrain;
 
 #endif /* __DNA_TERRAIN_TYPES_H__ */

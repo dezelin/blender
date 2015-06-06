@@ -45,7 +45,3 @@ void add_default_keymap_handler(wmWindowManager *wm, ARegion *ar)
 	WM_event_add_keymap_handler(&ar->handlers, keymap);
 }
 
-int ED_operator_region_terrain_active(bContext *C)
-{
-    return true;
-}
