@@ -27,12 +27,16 @@
 
 #include "terrain_intern.h"
 
+#include "BKE_context.h"
+
 #include "DNA_screen_types.h"
 #include "DNA_space_types.h"
 #include "DNA_windowmanager_types.h"
+
 #include "WM_api.h"
 #include "WM_keymap.h"
 #include "WM_types.h"
+
 
 void add_default_keymap_handler(wmWindowManager *wm, ARegion *ar)
 {
@@ -41,3 +45,7 @@ void add_default_keymap_handler(wmWindowManager *wm, ARegion *ar)
 	WM_event_add_keymap_handler(&ar->handlers, keymap);
 }
 
+int ED_operator_region_terrain_active(bContext *C)
+{
+    return true;
+}

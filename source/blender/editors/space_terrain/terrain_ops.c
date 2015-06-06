@@ -26,10 +26,27 @@
 */
 
 #include "MEM_guardedalloc.h"
+
 #include "DNA_windowmanager_types.h"
+
+#include "WM_api.h"
+
+#include "terrain_intern.h"
+
 
 void ED_operatortypes_terrain()
 {
+    /* Generator devices ops */
+    WM_operatortype_append(TERRAIN_OT_generators_layout);
+    WM_operatortype_append(TERRAIN_OT_generators_constant);
+    WM_operatortype_append(TERRAIN_OT_generators_gradient);
+    WM_operatortype_append(TERRAIN_OT_generators_radial_grad);
+    WM_operatortype_append(TERRAIN_OT_generators_voronoi);
+    WM_operatortype_append(TERRAIN_OT_generators_perlin_noise);
+    WM_operatortype_append(TERRAIN_OT_generators_file_input);
+    WM_operatortype_append(TERRAIN_OT_generators_advanced_perlin);
+    WM_operatortype_append(TERRAIN_OT_generators_color_generator);
+
 }
 
 void ED_operatormacros_terrain()
@@ -39,3 +56,5 @@ void ED_operatormacros_terrain()
 void ED_keymap_terrain(wmKeyConfig *keyconf)
 {
 }
+
+
