@@ -49,6 +49,7 @@
 #include "DNA_mask_types.h"
 #include "DNA_node_types.h"
 #include "DNA_userdef_types.h"
+#include "DNA_terrain_types.h"
 
 #include "BKE_context.h"
 #include "BKE_customdata.h"
@@ -61,6 +62,7 @@
 #include "BKE_editmesh.h"
 #include "BKE_sound.h"
 #include "BKE_mask.h"
+#include "BKE_terrain.h"
 
 #include "WM_api.h"
 #include "WM_types.h"
@@ -216,6 +218,15 @@ int ED_operator_region_view3d_active(bContext *C)
 int ED_operator_terrain_active(bContext *C)
 {
 	return ed_spacetype_test(C, SPACE_TERRAIN);
+}
+
+int ED_operator_terrain_editable(bContext *C)
+{
+	Terrain *terrain = CTX_data_edit_terrain(C);
+	if (terrain && terrain->id.lib == NULL)
+		return 1;
+
+	return 0;
 }
 
 /* generic for any view2d which uses anim_ops */

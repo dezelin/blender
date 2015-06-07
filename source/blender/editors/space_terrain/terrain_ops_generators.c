@@ -39,23 +39,23 @@
 static int generators_layout_invoke(bContext *C, wmOperator *op, 
         const wmEvent *event)
 {
-    return 0;
+    	return 0;
 }
 
 static int generators_layout_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+    	return 0;
 }
 
 static int generators_layout_modal(bContext *C, wmOperator *op, 
         const wmEvent *event)
 {
-    return 0;
+    	return 0;
 }
 
 static int generators_layout_poll(struct bContext *C)
 {
-    return ED_operator_terrain_active(C);
+    	return ED_operator_terrain_active(C);
 }
 
 static void generators_layout_cancel(bContext *C, wmOperator *op)
@@ -67,7 +67,7 @@ void TERRAIN_OT_generators_layout(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Layout generator";
 	ot->description = "Layout generator";
-    ot->idname = "TERRAIN_OT_generators_layout";
+    	ot->idname = "TERRAIN_OT_generators_layout";
 
 	/* api callbacks */
 	ot->invoke = generators_layout_invoke;
@@ -82,23 +82,23 @@ void TERRAIN_OT_generators_layout(wmOperatorType *ot)
 static int generators_constant_invoke(bContext *C, wmOperator *op, 
         const wmEvent *event)
 {
-    return 0;
+    	return 0;
 }
 
 static int generators_constant_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+    	return 0;
 }
 
 static int generators_constant_modal(bContext *C, wmOperator *op, 
         const wmEvent *event)
 {
-    return 0;
+    	return 0;
 }
 
 static int generators_constant_poll(struct bContext *C)
 {
-    return ED_operator_terrain_active(C);
+    	return ED_operator_terrain_active(C);
 }
 
 static void generators_constant_cancel(bContext *C, wmOperator *op)
@@ -110,7 +110,7 @@ void TERRAIN_OT_generators_constant(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Constant generator";
 	ot->description = "Constant generator";
-    ot->idname = "TERRAIN_OT_generators_constant";
+    	ot->idname = "TERRAIN_OT_generators_constant";
 
 	/* api callbacks */
 	ot->invoke = generators_constant_invoke;
@@ -125,12 +125,12 @@ void TERRAIN_OT_generators_constant(wmOperatorType *ot)
 static int generators_gradient_invoke(bContext *C, wmOperator *op, 
         const wmEvent *event)
 {
-    return 0;
+    	return 0;
 }
 
 static int generators_gradient_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_gradient_modal(bContext *C, wmOperator *op, 

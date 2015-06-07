@@ -154,6 +154,7 @@ extern EnumPropertyItem viewport_shade_items[];
 extern EnumPropertyItem navigation_mode_items[];
 
 extern EnumPropertyItem terrain_mode_items[];
+extern EnumPropertyItem terrain_type_items[];
 
 int rna_node_tree_type_to_enum(struct bNodeTreeType *typeinfo);
 int rna_node_tree_idname_to_enum(const char *idname);

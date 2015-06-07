@@ -30,6 +30,10 @@
 
 #include "DNA_ID.h"
 
+enum {
+    TE_TYPE_BLUEPRINT = 0
+};
+
 typedef struct TerrainBlueprintVar {
 	struct TerrainBlueprintVar *next, *prev;
 } TerrainBlueprintVar;
@@ -91,8 +95,8 @@ typedef struct TerrainBlueprint {
 typedef struct Terrain {
 	ID id;
 	TerrainBlueprint *blueprint;
-    int mode;
-    int pad0;
+    	int mode;
+    	int pad0;
 } Terrain;
 
 #endif /* __DNA_TERRAIN_TYPES_H__ */
