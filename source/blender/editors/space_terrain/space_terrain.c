@@ -37,7 +37,9 @@
 #include "BLI_blenlib.h"
 
 #include "BKE_context.h"
+#include "BKE_main.h"
 #include "BKE_screen.h"
+#include "BKE_terrain.h"
 
 #include "ED_space_api.h"
 #include "ED_screen.h"
@@ -93,7 +95,6 @@ static SpaceLink *terrain_new(const bContext *C)
 	ar = MEM_callocN(sizeof(ARegion), "main area for terrain");
 	BLI_addtail(&sterrain->regionbase, ar);
 	ar->regiontype = RGN_TYPE_WINDOW;
-	ar->regiondata = MEM_callocN(sizeof(Terrain), "terrain and blueprint data");
 
 	return (SpaceLink *)sterrain;
 }
@@ -114,6 +115,7 @@ static void terrain_listener(bScreen *UNUSED(sc), ScrArea *sa, struct wmNotifier
 static SpaceLink *terrain_duplicate(SpaceLink *sl)
 {
 	SpaceTerrain *sterrain = MEM_dupallocN(sl);
+    	sterrain->terrain = BKE_terrain_copy(sterrain->terrain);
 	return (SpaceLink *)sterrain;
 }
 

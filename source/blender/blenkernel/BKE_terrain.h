@@ -40,11 +40,32 @@ enum {
 
 struct Main;
 struct Terrain;
+struct TerrainBlueprint;
+struct TerrainBlueprintDescription;
+struct TerrainBlueprintSettings;
 
-void			BKE_terrain_free(struct Terrain *terrain);
-void			BKE_terrain_unlink(struct Terrain *terrain);
+void BKE_terrain_free(struct Terrain *terrain);
+void BKE_terrain_unlink(struct Main *bmain, struct Terrain *terrain);
 struct Terrain *BKE_terrain_add(struct Main *bmain, const char *name);
 struct Terrain *BKE_terrain_copy(struct Terrain *terrain);
+
+void BKE_terrain_blueprint_free(struct TerrainBlueprint *blueprint);
+struct TerrainBlueprint *BKE_terrain_blueprint_add(void);
+struct TerrainBlueprint *BKE_terrain_blueprint_copy(
+        struct TerrainBlueprint *blueprint);
+
+void BKE_terrain_blueprint_description_free(
+        struct TerrainBlueprintDescription *description);
+struct TerrainBlueprintDescription *BKE_terrain_blueprint_description_add(void);
+struct TerrainBlueprintDescription *BKE_terrain_blueprint_description_copy(
+        struct TerrainBlueprintDescription* description);
+
+void BKE_terrain_blueprint_settings_free(
+        struct TerrainBlueprintSettings *settings);
+struct TerrainBlueprintSettings *BKE_terrain_blueprint_settings_add(void);
+struct TerrainBlueprintSettings *BKE_terrain_blueprint_settings_copy(
+        struct TerrainBlueprintSettings* settings);
+
 
 #ifdef __cplusplus
 }

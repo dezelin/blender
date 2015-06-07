@@ -47,6 +47,10 @@ EnumPropertyItem terrain_mode_items[] = {
 	{0, NULL, 0, NULL, NULL}
 };
 
+EnumPropertyItem terrain_type_items[] = {
+	{TE_TYPE_BLUEPRINT, "BLUEPRINT", ICON_TERRAIN_BLUEPRINT, "Blueprint", "Terrain blueprint"},
+	{0, NULL, 0, NULL, NULL}
+};
 
 #ifdef RNA_RUNTIME
 
@@ -130,9 +134,9 @@ static void rna_def_terrain_blueprint(BlenderRNA *brna)
 	RNA_def_struct_ui_icon(srna, ICON_NONE);
 
 	prop = RNA_def_property(srna, "type", PROP_ENUM, PROP_NONE);
-	RNA_def_property_enum_items(prop, terrain_mode_items);
+	RNA_def_property_enum_items(prop, terrain_type_items);
 	RNA_def_property_clear_flag(prop, PROP_EDITABLE);
-	RNA_def_property_ui_text(prop, "Type", "Terrain generator mode type");
+	RNA_def_property_ui_text(prop, "Type", "Terrain generator blueprint type");
 	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
 
 	prop = RNA_def_property(srna, "name", PROP_STRING, PROP_NONE);

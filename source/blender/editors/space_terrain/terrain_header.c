@@ -73,7 +73,7 @@ void uiTemplateHeaderTerrain(uiLayout *layout, struct bContext *C)
 		modeselect = OB_MODE_OBJECT;
 	}
 */
-    modeselect = TE_MODE_BLUEPRINT;
+    	modeselect = TE_MODE_BLUEPRINT;
 	row = uiLayoutRow(layout, false);
 	{
 		EnumPropertyItem *item = terrain_mode_items;

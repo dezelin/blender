@@ -581,7 +581,7 @@ static Terrain *rna_Main_terrains_new(Main *bmain, const char *name)
 static void rna_Main_terrains_remove(Main *bmain, PointerRNA *terrain_ptr)
 {
 	Terrain *terrain = terrain_ptr->data;
-	BKE_terrain_unlink(terrain);
+	BKE_terrain_unlink(bmain, terrain);
 	BKE_libblock_free(bmain, terrain);
 	RNA_POINTER_INVALIDATE(terrain_ptr);
 }
