@@ -8,7 +8,7 @@
 *
 * This program is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -36,19 +36,19 @@
 
 void ED_operatortypes_terrain()
 {
-    /* Miscelaneous ops */
-    WM_operatortype_append(TERRAIN_OT_mode_set);
+	/* Miscelaneous ops */
+	WM_operatortype_append(TERRAIN_OT_mode_set);
 
-    /* Generator devices ops */
-    WM_operatortype_append(TERRAIN_OT_generators_layout);
-    WM_operatortype_append(TERRAIN_OT_generators_constant);
-    WM_operatortype_append(TERRAIN_OT_generators_gradient);
-    WM_operatortype_append(TERRAIN_OT_generators_radial_grad);
-    WM_operatortype_append(TERRAIN_OT_generators_voronoi);
-    WM_operatortype_append(TERRAIN_OT_generators_perlin_noise);
-    WM_operatortype_append(TERRAIN_OT_generators_file_input);
-    WM_operatortype_append(TERRAIN_OT_generators_advanced_perlin);
-    WM_operatortype_append(TERRAIN_OT_generators_color_generator);
+	/* Generator devices ops */
+	WM_operatortype_append(TERRAIN_OT_generators_layout);
+	WM_operatortype_append(TERRAIN_OT_generators_constant);
+	WM_operatortype_append(TERRAIN_OT_generators_gradient);
+	WM_operatortype_append(TERRAIN_OT_generators_radial_grad);
+	WM_operatortype_append(TERRAIN_OT_generators_voronoi);
+	WM_operatortype_append(TERRAIN_OT_generators_perlin_noise);
+	WM_operatortype_append(TERRAIN_OT_generators_file_input);
+	WM_operatortype_append(TERRAIN_OT_generators_advanced_perlin);
+	WM_operatortype_append(TERRAIN_OT_generators_color_generator);
 
 }
 

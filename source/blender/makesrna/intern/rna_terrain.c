@@ -8,7 +8,7 @@
 *
 * This program is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -39,16 +39,22 @@
 #include "WM_types.h"
 
 EnumPropertyItem terrain_mode_items[] = {
-	{TE_MODE_BLUEPRINT, "BLUEPRINT", ICON_TERRAIN_BLUEPRINT, "Blueprint", "Terrain blueprint"},
-	{TE_MODE_EXPLORER, "EXPLORER", ICON_TERRAIN_EXPLORER, "Explorer", "Terrain explorer"},
-	{TE_MODE_LAYOUT, "LAYOUT", ICON_TERRAIN_LAYOUT, "Layout", "Terrain layout"},
-	{TE_MODE_VIEW3D, "VIEW3D", ICON_TERRAIN_VIEW3D, "3D View", "Terrain 3D view"},
-	{TE_MODE_VIEW2D, "VIEW2D", ICON_TERRAIN_VIEW2D, "2D View", "Terrain 2D view"},
+	{TE_MODE_BLUEPRINT, "BLUEPRINT", ICON_TERRAIN_BLUEPRINT, "Blueprint", 
+		"Terrain blueprint"},
+	{TE_MODE_EXPLORER, "EXPLORER", ICON_TERRAIN_EXPLORER, "Explorer", 
+		"Terrain explorer"},
+	{TE_MODE_LAYOUT, "LAYOUT", ICON_TERRAIN_LAYOUT, "Layout", 
+		"Terrain layout"},
+	{TE_MODE_VIEW3D, "VIEW3D", ICON_TERRAIN_VIEW3D, "3D View", 
+		"Terrain 3D view"},
+	{TE_MODE_VIEW2D, "VIEW2D", ICON_TERRAIN_VIEW2D, "2D View", 
+		"Terrain 2D view"},
 	{0, NULL, 0, NULL, NULL}
 };
 
 EnumPropertyItem terrain_type_items[] = {
-	{TE_TYPE_BLUEPRINT, "BLUEPRINT", ICON_TERRAIN_BLUEPRINT, "Blueprint", "Terrain blueprint"},
+	{TE_TYPE_BLUEPRINT, "BLUEPRINT", ICON_TERRAIN_BLUEPRINT, "Blueprint", 
+		"Terrain blueprint"},
 	{0, NULL, 0, NULL, NULL}
 };
 
@@ -56,16 +62,17 @@ EnumPropertyItem terrain_type_items[] = {
 
 static PointerRNA rna_TerrainBlueprint_description_get(PointerRNA *ptr)
 {
-    return *ptr;
+	return *ptr;
 }
 
-static void rna_TerrainBlueprint_description_set(PointerRNA *ptr, PointerRNA value)
+static void rna_TerrainBlueprint_description_set(PointerRNA *ptr, 
+		PointerRNA value)
 {
 }
 
 static PointerRNA rna_TerrainBlueprint_settings_get(PointerRNA *ptr)
 {
-    return *ptr;
+	return *ptr;
 }
 
 static void rna_TerrainBlueprint_settings_set(PointerRNA *ptr, PointerRNA value)
@@ -80,7 +87,8 @@ static void rna_def_terran_blueprint_settings(BlenderRNA *brna)
 	PropertyRNA *prop;
 
 	srna = RNA_def_struct(brna, "TerrainBlueprintSettings", NULL);
-	RNA_def_struct_ui_text(srna, "TerrainBlueprintSettings", "Terrain blueprint settings");
+	RNA_def_struct_ui_text(srna, "TerrainBlueprintSettings", 
+			"Terrain blueprint settings");
 	RNA_def_struct_ui_icon(srna, ICON_NONE);
 
 	prop = RNA_def_property(srna, "dummy", PROP_INT, PROP_NONE);
@@ -95,7 +103,8 @@ static void rna_def_terran_blueprint_description(BlenderRNA *brna)
 	PropertyRNA *prop;
 
 	srna = RNA_def_struct(brna, "TerrainBlueprintDescription", NULL);
-	RNA_def_struct_ui_text(srna, "TerrainBlueprintDescription", "Terrain blueprint description");
+	RNA_def_struct_ui_text(srna, "TerrainBlueprintDescription", 
+			"Terrain blueprint description");
 	RNA_def_struct_ui_icon(srna, ICON_NONE);
 
 	prop = RNA_def_property(srna, "author", PROP_STRING, PROP_NONE);
@@ -105,7 +114,8 @@ static void rna_def_terran_blueprint_description(BlenderRNA *brna)
 
 	prop = RNA_def_property(srna, "author_email", PROP_STRING, PROP_NONE);
 	RNA_def_property_string_sdna(prop, NULL, "author_email");
-	RNA_def_property_ui_text(prop, "Email", "Blueprint author email address");
+	RNA_def_property_ui_text(prop, "Email", 
+			"Blueprint author email address");
 	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
 
 	prop = RNA_def_property(srna, "copyright", PROP_STRING, PROP_NONE);
@@ -115,12 +125,14 @@ static void rna_def_terran_blueprint_description(BlenderRNA *brna)
 
 	prop = RNA_def_property(srna, "description", PROP_STRING, PROP_NONE);
 	RNA_def_property_string_sdna(prop, NULL, "description");
-	RNA_def_property_ui_text(prop, "Description", "Blueprint short description");
+	RNA_def_property_ui_text(prop, "Description", 
+			"Blueprint short description");
 	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
 
 	prop = RNA_def_property(srna, "license", PROP_STRING, PROP_NONE);
 	RNA_def_property_string_sdna(prop, NULL, "license");
-	RNA_def_property_ui_text(prop, "License", "Blueprint copyright license");
+	RNA_def_property_ui_text(prop, "License", 
+			"Blueprint copyright license");
 	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
 }
 
@@ -136,7 +148,8 @@ static void rna_def_terrain_blueprint(BlenderRNA *brna)
 	prop = RNA_def_property(srna, "type", PROP_ENUM, PROP_NONE);
 	RNA_def_property_enum_items(prop, terrain_type_items);
 	RNA_def_property_clear_flag(prop, PROP_EDITABLE);
-	RNA_def_property_ui_text(prop, "Type", "Terrain generator blueprint type");
+	RNA_def_property_ui_text(prop, "Type", 
+			"Terrain generator blueprint type");
 	RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
 
 	prop = RNA_def_property(srna, "name", PROP_STRING, PROP_NONE);
@@ -147,16 +160,20 @@ static void rna_def_terrain_blueprint(BlenderRNA *brna)
 	prop = RNA_def_property(srna, "description", PROP_POINTER, PROP_NONE);
 	RNA_def_property_struct_type(prop, "TerrainBlueprintDescription");
 	RNA_def_property_pointer_sdna(prop, NULL, "description");
-	RNA_def_property_pointer_funcs(prop, "rna_TerrainBlueprint_description_get", 
-		"rna_TerrainBlueprint_description_set", NULL, NULL);
-	RNA_def_property_ui_text(prop, "Description", "Terrain blueprint description");
+	RNA_def_property_pointer_funcs(prop, 
+			"rna_TerrainBlueprint_description_get", 
+			"rna_TerrainBlueprint_description_set", NULL, NULL);
+	RNA_def_property_ui_text(prop, "Description", 
+			"Terrain blueprint description");
 
 	prop = RNA_def_property(srna, "settings", PROP_POINTER, PROP_NONE);
 	RNA_def_property_struct_type(prop, "TerrainBlueprintSettings");
 	RNA_def_property_pointer_sdna(prop, NULL, "settings");
-	RNA_def_property_pointer_funcs(prop, "rna_TerrainBlueprint_settings_get",
-		"rna_TerrainBlueprint_settings_set", NULL, NULL);
-	RNA_def_property_ui_text(prop, "Settings", "Terrain blueprint settings");
+	RNA_def_property_pointer_funcs(prop, 
+			"rna_TerrainBlueprint_settings_get",
+			"rna_TerrainBlueprint_settings_set", NULL, NULL);
+	RNA_def_property_ui_text(prop, "Settings", 
+			"Terrain blueprint settings");
 }
 
 static void rna_def_terrain(BlenderRNA *brna)
@@ -172,9 +189,10 @@ static void rna_def_terrain(BlenderRNA *brna)
 	RNA_def_property_struct_type(prop, "TerrainBlueprint");
 	RNA_def_property_pointer_sdna(prop, NULL, "blueprint");
 	RNA_def_property_flag(prop, PROP_NEVER_NULL);
-	RNA_def_property_ui_text(prop, "Terrain blueprint", "Terrain blueprint");
+	RNA_def_property_ui_text(prop, "Terrain blueprint", 
+			"Terrain blueprint");
 	
-    prop = RNA_def_property(srna, "mode", PROP_ENUM, PROP_NONE);
+	prop = RNA_def_property(srna, "mode", PROP_ENUM, PROP_NONE);
 	RNA_def_property_enum_sdna(prop, NULL, "mode");
 	RNA_def_property_enum_items(prop, terrain_mode_items);
 	RNA_def_property_clear_flag(prop, PROP_EDITABLE);

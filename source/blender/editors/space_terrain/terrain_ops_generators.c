@@ -8,7 +8,7 @@
 *
 * This program is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -37,25 +37,25 @@
 
 
 static int generators_layout_invoke(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    	return 0;
+	return 0;
 }
 
 static int generators_layout_exec(bContext *C, wmOperator *op)
 {
-    	return 0;
+	return 0;
 }
 
 static int generators_layout_modal(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    	return 0;
+	return 0;
 }
 
 static int generators_layout_poll(struct bContext *C)
 {
-    	return ED_operator_terrain_active(C);
+	return ED_operator_terrain_active(C);
 }
 
 static void generators_layout_cancel(bContext *C, wmOperator *op)
@@ -67,7 +67,7 @@ void TERRAIN_OT_generators_layout(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Layout generator";
 	ot->description = "Layout generator";
-    	ot->idname = "TERRAIN_OT_generators_layout";
+	ot->idname = "TERRAIN_OT_generators_layout";
 
 	/* api callbacks */
 	ot->invoke = generators_layout_invoke;
@@ -80,25 +80,25 @@ void TERRAIN_OT_generators_layout(wmOperatorType *ot)
 }
 
 static int generators_constant_invoke(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    	return 0;
+	return 0;
 }
 
 static int generators_constant_exec(bContext *C, wmOperator *op)
 {
-    	return 0;
+	return 0;
 }
 
 static int generators_constant_modal(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    	return 0;
+	return 0;
 }
 
 static int generators_constant_poll(struct bContext *C)
 {
-    	return ED_operator_terrain_active(C);
+	return ED_operator_terrain_active(C);
 }
 
 static void generators_constant_cancel(bContext *C, wmOperator *op)
@@ -110,7 +110,7 @@ void TERRAIN_OT_generators_constant(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Constant generator";
 	ot->description = "Constant generator";
-    	ot->idname = "TERRAIN_OT_generators_constant";
+	ot->idname = "TERRAIN_OT_generators_constant";
 
 	/* api callbacks */
 	ot->invoke = generators_constant_invoke;
@@ -123,9 +123,9 @@ void TERRAIN_OT_generators_constant(wmOperatorType *ot)
 }
 
 static int generators_gradient_invoke(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    	return 0;
+	return 0;
 }
 
 static int generators_gradient_exec(bContext *C, wmOperator *op)
@@ -134,14 +134,14 @@ static int generators_gradient_exec(bContext *C, wmOperator *op)
 }
 
 static int generators_gradient_modal(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_gradient_poll(struct bContext *C)
 {
-    return ED_operator_terrain_active(C);
+	return ED_operator_terrain_active(C);
 }
 
 static void generators_gradient_cancel(bContext *C, wmOperator *op)
@@ -153,7 +153,7 @@ void TERRAIN_OT_generators_gradient(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Gradient";
 	ot->description = "Gradient generator";
-    ot->idname = "TERRAIN_OT_generators_gradient";
+	ot->idname = "TERRAIN_OT_generators_gradient";
 
 	/* api callbacks */
 	ot->invoke = generators_gradient_invoke;
@@ -166,25 +166,25 @@ void TERRAIN_OT_generators_gradient(wmOperatorType *ot)
 }
 
 static int generators_radial_grad_invoke(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_radial_grad_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_radial_grad_modal(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_radial_grad_poll(struct bContext *C)
 {
-    return ED_operator_terrain_active(C);
+	return ED_operator_terrain_active(C);
 }
 
 static void generators_radial_grad_cancel(bContext *C, wmOperator *op)
@@ -196,7 +196,7 @@ void TERRAIN_OT_generators_radial_grad(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Radial gradient";
 	ot->description = "Radial gradient generator";
-    ot->idname = "TERRAIN_OT_generators_radial_grad";
+	ot->idname = "TERRAIN_OT_generators_radial_grad";
 
 	/* api callbacks */
 	ot->invoke = generators_radial_grad_invoke;
@@ -209,25 +209,25 @@ void TERRAIN_OT_generators_radial_grad(wmOperatorType *ot)
 }
 
 static int generators_voronoi_invoke(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_voronoi_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_voronoi_modal(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_voronoi_poll(struct bContext *C)
 {
-    return ED_operator_terrain_active(C);
+	return ED_operator_terrain_active(C);
 }
 
 static void generators_voronoi_cancel(bContext *C, wmOperator *op)
@@ -239,7 +239,7 @@ void TERRAIN_OT_generators_voronoi(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Voronoi";
 	ot->description = "Voronoi generator";
-    ot->idname = "TERRAIN_OT_generators_voronoi";
+	ot->idname = "TERRAIN_OT_generators_voronoi";
 
 	/* api callbacks */
 	ot->invoke = generators_voronoi_invoke;
@@ -252,25 +252,25 @@ void TERRAIN_OT_generators_voronoi(wmOperatorType *ot)
 }
 
 static int generators_perlin_noise_invoke(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_perlin_noise_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_perlin_noise_modal(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_perlin_noise_poll(struct bContext *C)
 {
-    return ED_operator_terrain_active(C);
+	return ED_operator_terrain_active(C);
 }
 
 static void generators_perlin_noise_cancel(bContext *C, wmOperator *op)
@@ -282,7 +282,7 @@ void TERRAIN_OT_generators_perlin_noise(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Perlin noise";
 	ot->description = "Perlin noise generator";
-    ot->idname = "TERRAIN_OT_generators_perlin_noise";
+	ot->idname = "TERRAIN_OT_generators_perlin_noise";
 
 	/* api callbacks */
 	ot->invoke = generators_perlin_noise_invoke;
@@ -295,25 +295,25 @@ void TERRAIN_OT_generators_perlin_noise(wmOperatorType *ot)
 }
 
 static int generators_file_input_invoke(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_file_input_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_file_input_modal(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_file_input_poll(struct bContext *C)
 {
-    return ED_operator_terrain_active(C);
+	return ED_operator_terrain_active(C);
 }
 
 static void generators_file_input_cancel(bContext *C, wmOperator *op)
@@ -325,7 +325,7 @@ void TERRAIN_OT_generators_file_input(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "File input";
 	ot->description = "File input  generator";
-    ot->idname = "TERRAIN_OT_generators_file_input";
+	ot->idname = "TERRAIN_OT_generators_file_input";
 
 	/* api callbacks */
 	ot->invoke = generators_file_input_invoke;
@@ -338,25 +338,25 @@ void TERRAIN_OT_generators_file_input(wmOperatorType *ot)
 }
 
 static int generators_advanced_perlin_invoke(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_advanced_perlin_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_advanced_perlin_modal(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_advanced_perlin_poll(struct bContext *C)
 {
-    return ED_operator_terrain_active(C);
+	return ED_operator_terrain_active(C);
 }
 
 static void generators_advanced_perlin_cancel(bContext *C, wmOperator *op)
@@ -368,7 +368,7 @@ void TERRAIN_OT_generators_advanced_perlin(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Advanced Perlin";
 	ot->description = "Advanced Perlin generator";
-    ot->idname = "TERRAIN_OT_generators_advanced_perlin";
+	ot->idname = "TERRAIN_OT_generators_advanced_perlin";
 
 	/* api callbacks */
 	ot->invoke = generators_advanced_perlin_invoke;
@@ -381,25 +381,25 @@ void TERRAIN_OT_generators_advanced_perlin(wmOperatorType *ot)
 }
 
 static int generators_color_generator_invoke(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_color_generator_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_color_generator_modal(bContext *C, wmOperator *op, 
-        const wmEvent *event)
+		const wmEvent *event)
 {
-    return 0;
+	return 0;
 }
 
 static int generators_color_generator_poll(struct bContext *C)
 {
-    return ED_operator_terrain_active(C);
+	return ED_operator_terrain_active(C);
 }
 
 static void generators_color_generator_cancel(bContext *C, wmOperator *op)
@@ -411,7 +411,7 @@ void TERRAIN_OT_generators_color_generator(wmOperatorType *ot)
 	/* identifiers */
 	ot->name = "Color";
 	ot->description = "Color generator";
-    ot->idname = "TERRAIN_OT_generators_color_generator";
+	ot->idname = "TERRAIN_OT_generators_color_generator";
 
 	/* api callbacks */
 	ot->invoke = generators_color_generator_invoke;

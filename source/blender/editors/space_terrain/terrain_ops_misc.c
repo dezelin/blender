@@ -8,7 +8,7 @@
 *
 * This program is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -45,11 +45,12 @@
 
 static int terrain_mode_set_exec(bContext *C, wmOperator *op)
 {
-    return 0;
+	return 0;
 }
 
 static EnumPropertyItem *terrain_mode_set_itemsf(bContext *C, 
-        PointerRNA *UNUSED(ptr), PropertyRNA *UNUSED(prop), bool *r_free)
+		PointerRNA *UNUSED(ptr), PropertyRNA *UNUSED(prop), 
+		bool *r_free)
 {
 	EnumPropertyItem *input = terrain_mode_items;
 	EnumPropertyItem *item = NULL;
@@ -60,7 +61,7 @@ static EnumPropertyItem *terrain_mode_set_itemsf(bContext *C,
 		return terrain_mode_items;
 
 	while (input->identifier) {
-	    RNA_enum_item_add(&item, &totitem, input);
+		RNA_enum_item_add(&item, &totitem, input);
 		input++;
 	}
 
@@ -89,7 +90,7 @@ void TERRAIN_OT_mode_set(wmOperatorType *ot)
 	ot->flag = 0; /* no register/undo here, leave it to operators being called */
 	
 	ot->prop = RNA_def_enum(ot->srna, "mode", terrain_mode_items, 
-            TE_MODE_BLUEPRINT, "Mode", "");
+			TE_MODE_BLUEPRINT, "Mode", "");
 	RNA_def_enum_funcs(ot->prop, terrain_mode_set_itemsf);
 	RNA_def_property_flag(ot->prop, PROP_SKIP_SAVE);
 

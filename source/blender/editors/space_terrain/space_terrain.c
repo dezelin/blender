@@ -8,7 +8,7 @@
 *
 * This program is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -107,7 +107,8 @@ static void terrain_init(wmWindowManager *UNUSED(wm), ScrArea *UNUSED(sa))
 {
 }
 
-static void terrain_listener(bScreen *UNUSED(sc), ScrArea *sa, struct wmNotifier *wmn)
+static void terrain_listener(bScreen *UNUSED(sc), ScrArea *sa, 
+		struct wmNotifier *wmn)
 {
 	ED_area_tag_redraw(sa);
 }
@@ -115,7 +116,7 @@ static void terrain_listener(bScreen *UNUSED(sc), ScrArea *sa, struct wmNotifier
 static SpaceLink *terrain_duplicate(SpaceLink *sl)
 {
 	SpaceTerrain *sterrain = MEM_dupallocN(sl);
-    	sterrain->terrain = BKE_terrain_copy(sterrain->terrain);
+		sterrain->terrain = BKE_terrain_copy(sterrain->terrain);
 	return (SpaceLink *)sterrain;
 }
 
@@ -136,7 +137,9 @@ static void terrain_dropboxes(void)
 
 const char *terrain_context_dir[] = { "terrain_blueprint", NULL };
 
-static int terrain_context(const bContext *C, const char *member, bContextDataResult *result)
+
+static int terrain_context(const bContext *C, const char *member, 
+		bContextDataResult *result)
 {
 	SpaceTerrain *st = CTX_wm_space_terrain(C);
 
@@ -170,7 +173,8 @@ static void terrain_main_area_draw(const bContext *C, ARegion *ar)
 	UI_view2d_view_restore(C);
 
 	/* scrollers */
-	scrollers = UI_view2d_scrollers_calc(C, v2d, V2D_ARG_DUMMY, V2D_ARG_DUMMY, V2D_ARG_DUMMY, V2D_GRID_CLAMP);
+	scrollers = UI_view2d_scrollers_calc(C, v2d, V2D_ARG_DUMMY, 
+			V2D_ARG_DUMMY, V2D_ARG_DUMMY, V2D_GRID_CLAMP);
 	UI_view2d_scrollers_draw(C, v2d, scrollers);
 	UI_view2d_scrollers_free(scrollers);
 }
@@ -178,7 +182,8 @@ static void terrain_main_area_draw(const bContext *C, ARegion *ar)
 /* add handlers, stuff you only do once or on area/region changes */
 static void terrain_main_area_init(wmWindowManager *wm, ARegion *ar)
 {
-	UI_view2d_region_reinit(&ar->v2d, V2D_COMMONVIEW_CUSTOM, ar->winx, ar->winy);
+	UI_view2d_region_reinit(&ar->v2d, V2D_COMMONVIEW_CUSTOM, 
+			ar->winx, ar->winy);
 	add_default_keymap_handler(wm, ar);
 }
 
@@ -198,17 +203,20 @@ static void *terrain_main_area_duplicate(void *poin)
 	return NULL;
 }
 
-static void terrain_main_area_listener(bScreen *sc, ScrArea *sa, ARegion *ar, wmNotifier *wmn)
+static void terrain_main_area_listener(bScreen *sc, ScrArea *sa, ARegion *ar, 
+		wmNotifier *wmn)
 {
 	ED_region_tag_redraw(ar);
 }
 
-static void terrain_main_area_cursor(wmWindow *win, ScrArea *UNUSED(sa), ARegion *UNUSED(ar))
+static void terrain_main_area_cursor(wmWindow *win, ScrArea *UNUSED(sa), 
+		ARegion *UNUSED(ar))
 {
 
 }
 
-static void terrain_buttons_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
+static void terrain_buttons_area_listener(bScreen *UNUSED(sc), 
+		ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
 {
 	ED_region_tag_redraw(ar);
 }
@@ -225,7 +233,8 @@ static void terrain_buttons_area_draw(const bContext *C, ARegion *ar)
 	ED_region_panels(C, ar, 1, NULL, -1);
 }
 
-static void terrain_tools_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
+static void terrain_tools_area_listener(bScreen *UNUSED(sc), 
+		ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
 {
 	ED_region_tag_redraw(ar);
 }
@@ -241,7 +250,8 @@ static void terrain_tools_area_draw(const bContext *C, ARegion *ar)
 	ED_region_panels(C, ar, 1, CTX_data_mode_string(C), -1);
 }
 
-static void terrain_props_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
+static void terrain_props_area_listener(bScreen *UNUSED(sc), 
+		ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
 {
 	ED_region_tag_redraw(ar);
 }
@@ -257,7 +267,8 @@ static void terrain_props_area_draw(const bContext *C, ARegion *ar)
 	ED_region_panels(C, ar, 1, NULL, -1);
 }
 
-static void terrain_header_area_listener(bScreen *UNUSED(sc), ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
+static void terrain_header_area_listener(bScreen *UNUSED(sc), 
+		ScrArea *UNUSED(sa), ARegion *ar, wmNotifier *wmn)
 {
 	ED_region_tag_redraw(ar);
 }
@@ -305,7 +316,8 @@ void ED_spacetype_terrain()
 	BLI_addhead(&st->regiontypes, art);
 
 	/* regions: listview/buttons */
-	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain buttons region");
+	art = MEM_callocN(sizeof(ARegionType), 
+			"spacetype terrain buttons region");
 	art->regionid = RGN_TYPE_UI;
 	art->prefsizex = 180; /* XXX */
 	art->keymapflag = ED_KEYMAP_UI | ED_KEYMAP_FRAMES;
@@ -317,7 +329,8 @@ void ED_spacetype_terrain()
 	terrain_buttons_register(art);
 
 	/* regions: tool(bar) */
-	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain tools region");
+	art = MEM_callocN(sizeof(ARegionType), 
+			"spacetype terrain tools region");
 	art->regionid = RGN_TYPE_TOOLS;
 	art->prefsizex = 160; /* XXX */
 	art->prefsizey = 50; /* XXX */
@@ -328,7 +341,8 @@ void ED_spacetype_terrain()
 	BLI_addhead(&st->regiontypes, art);
 
 	/* regions: tool properties */
-	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain tool properties region");
+	art = MEM_callocN(sizeof(ARegionType), 
+			"spacetype terrain tool properties region");
 	art->regionid = RGN_TYPE_TOOL_PROPS;
 	art->prefsizex = UI_COMPACT_PANEL_WIDTH;
 	art->prefsizey = 120;
@@ -341,10 +355,12 @@ void ED_spacetype_terrain()
 	terrain_tool_props_register(art);
 
 	/* regions: header */
-	art = MEM_callocN(sizeof(ARegionType), "spacetype terrain header region");
+	art = MEM_callocN(sizeof(ARegionType), 
+			"spacetype terrain header region");
 	art->regionid = RGN_TYPE_HEADER;
 	art->prefsizey = HEADERY;
-	art->keymapflag = ED_KEYMAP_UI | ED_KEYMAP_VIEW2D | ED_KEYMAP_FRAMES | ED_KEYMAP_HEADER;
+	art->keymapflag = ED_KEYMAP_UI | ED_KEYMAP_VIEW2D | ED_KEYMAP_FRAMES | 
+		ED_KEYMAP_HEADER;
 	art->listener = terrain_header_area_listener;
 	art->init = terrain_header_area_init;
 	art->draw = terrain_header_area_draw;
