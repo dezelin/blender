@@ -1132,5 +1132,5 @@ int CTX_data_editable_gpencil_strokes(const bContext *C, ListBase *list)
 
 struct Terrain *CTX_data_edit_terrain(const bContext *C)
 {
-	return ctx_data_pointer_get(C, "edit_terrain");
+	return ctx_data_pointer_get(C, "terrain_blueprint");
 }
