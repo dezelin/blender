@@ -181,16 +181,21 @@ static void rna_def_terrain(BlenderRNA *brna)
 	StructRNA *srna;
 	PropertyRNA *prop;
 
-	srna = RNA_def_struct(brna, "Terrain", NULL);
+	srna = RNA_def_struct(brna, "Terrain", "ID");
 	RNA_def_struct_ui_text(srna, "Terrain", "Terrain blueprint data block");
 	RNA_def_struct_ui_icon(srna, ICON_NONE);
 
-	prop = RNA_def_property(srna, "blueprint", PROP_POINTER, PROP_NONE);
+	prop = RNA_def_property(srna, "blueprints", PROP_POINTER, PROP_NONE);
 	RNA_def_property_struct_type(prop, "TerrainBlueprint");
-	RNA_def_property_pointer_sdna(prop, NULL, "blueprint");
+	RNA_def_property_pointer_sdna(prop, NULL, "blueprints");
 	RNA_def_property_flag(prop, PROP_NEVER_NULL);
-	RNA_def_property_ui_text(prop, "Terrain blueprint", 
-			"Terrain blueprint");
+	RNA_def_property_ui_text(prop, "Terrain blueprints", 
+			"Terrain blueprints");
+	
+    prop = RNA_def_property(srna, "curr", PROP_INT, PROP_NONE);
+    RNA_def_property_int_sdna(prop, NULL, "curr");
+	RNA_def_property_ui_text(prop, "Curr", "Current terrain blueprint");
+    RNA_def_property_update(prop, NC_TERRAIN | ND_DISPLAY, NULL);
 	
 	prop = RNA_def_property(srna, "mode", PROP_ENUM, PROP_NONE);
 	RNA_def_property_enum_sdna(prop, NULL, "mode");

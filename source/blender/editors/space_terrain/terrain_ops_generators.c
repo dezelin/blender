@@ -25,12 +25,20 @@
 * ***** END GPL LICENSE BLOCK *****
 */
 
-#include "BKE_context.h"
+#include "BLF_translation.h"
 
+#include "BKE_context.h"
+#include "BKE_terrain.h"
+
+#include "DNA_terrain_types.h"
 #include "DNA_windowmanager_types.h"
 
 #include "ED_screen.h"
+#include "ED_terrain.h"
 
+#include "MEM_guardedalloc.h"
+
+#include "WM_api.h"
 #include "WM_types.h"
 
 #include "terrain_intern.h"
@@ -39,27 +47,41 @@
 static int generators_layout_invoke(bContext *C, wmOperator *op, 
 		const wmEvent *event)
 {
-	return 0;
-}
+    ED_area_headerprint(CTX_wm_area(C), IFACE_("Use LMB click to define location where place the device"));
 
-static int generators_layout_exec(bContext *C, wmOperator *op)
-{
-	return 0;
+    /* add modal handler for ESC */
+    WM_event_add_modal_handler(C, op);
+
+	return OPERATOR_RUNNING_MODAL;
 }
 
 static int generators_layout_modal(bContext *C, wmOperator *op, 
 		const wmEvent *event)
 {
-	return 0;
+    SpaceTerrain *space = CTX_wm_space_terrain(C);
+    Terrain *tr = ED_space_terrain_get_terrain(space);
+    ARegion *ar = CTX_wm_region(C);
+
+    switch (event->type) {
+        case MOUSEMOVE:
+            return OPERATOR_RUNNING_MODAL;
+
+        case LEFTMOUSE:
+            ED_area_headerprint(CTX_wm_area(C), NULL);
+            WM_event_add_notifier(C, NC_TERRAIN | NA_EDITED, tr);
+            return OPERATOR_FINISHED;
+
+        case ESCKEY:
+            ED_area_headerprint(CTX_wm_area(C), NULL);
+            return OPERATOR_CANCELLED;
+    }
+
+	return OPERATOR_PASS_THROUGH;
 }
 
 static int generators_layout_poll(struct bContext *C)
 {
 	return ED_operator_terrain_active(C);
-}
-
-static void generators_layout_cancel(bContext *C, wmOperator *op)
-{
 }
 
 void TERRAIN_OT_generators_layout(wmOperatorType *ot)
@@ -73,10 +95,9 @@ void TERRAIN_OT_generators_layout(wmOperatorType *ot)
 	ot->invoke = generators_layout_invoke;
 	ot->modal = generators_layout_modal;
 	ot->poll = generators_layout_poll;
-	ot->cancel = generators_layout_cancel;
 
 	/* flags */
-	ot->flag = OPTYPE_BLOCKING | OPTYPE_GRAB_CURSOR;
+	ot->flag = OPTYPE_REGISTER | OPTYPE_UNDO | OPTYPE_BLOCKING;
 }
 
 static int generators_constant_invoke(bContext *C, wmOperator *op, 

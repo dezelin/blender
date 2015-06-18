@@ -8,7 +8,7 @@
 *
 * This program is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -25,17 +25,14 @@
 * ***** END GPL LICENSE BLOCK *****
 */
 
-#ifndef __ED_TERRAIN_H__
-#define __ED_TERRAIN_H__
+#include "BKE_terrain.h"
 
-struct Terrain;
-struct SpaceTerrain;
-struct wmKeyConfig;
+#include "DNA_space_types.h"
+#include "DNA_terrain_types.h"
 
-void ED_operatortypes_terrain();
-void ED_operatormacros_terrain();
-void ED_keymap_terrain(wmKeyConfig *keyconf);
 
-struct Terrain* ED_space_terrain_get_terrain(SpaceTerrain *space);
+Terrain* ED_space_terrain_get_terrain(SpaceTerrain *space)
+{
+    return space->terrain;
+}
 
-#endif /* __ED_TERRAIN_H__ */

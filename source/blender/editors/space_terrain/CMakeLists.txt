@@ -46,6 +46,8 @@ set(INC_SYS
 set(SRC
 	space_terrain.c
 	terrain_buttons.c
+    terrain_draw.c
+    terrain_editor.c
 	terrain_header.c
 	terrain_internal.c
 	terrain_ops.c

@@ -40,6 +40,9 @@ void terrain_buttons_register(struct ARegionType *art);
 /* terrain_toolbar.c */
 void terrain_tool_props_register(struct ARegionType *art);
 
+/* terrain_draw.c */
+void terrain_draw_current(const struct bContext *C, struct ARegion *ar);
+
 /* common */
 void add_default_keymap_handler(struct wmWindowManager *wm, struct ARegion *ar);
 

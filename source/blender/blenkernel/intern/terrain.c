@@ -42,7 +42,12 @@
 
 void BKE_terrain_free(Terrain *terrain)
 {
-	BKE_terrain_blueprint_free(terrain->blueprint);
+    TerrainBlueprint *bp;
+    while((bp = BLI_pophead(&terrain->blueprints))) {
+    	BKE_terrain_blueprint_free(bp);
+        MEM_freeN(bp);
+    }
+
 	MEM_freeN(terrain);
 }
 
@@ -54,9 +59,11 @@ void BKE_terrain_unlink(Main *bmain, Terrain *terrain)
 Terrain *BKE_terrain_add(Main *bmain, const char *name)
 {
 	Terrain *tr;
+	TerrainBlueprint *bp;
 
 	tr = BKE_libblock_alloc(bmain, ID_TRN, name);
-	tr->blueprint = BKE_terrain_blueprint_add(); 
+	bp = BKE_terrain_blueprint_add();
+    BLI_addtail(&tr->blueprints, bp);
 
 	return tr;
 }

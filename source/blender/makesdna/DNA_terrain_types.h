@@ -80,6 +80,7 @@ typedef struct TerrainBlueprintDescription {
 } TerrainBlueprintDescription;
 
 typedef struct TerrainBlueprint {
+    struct TerrainBlueprint *next, *prev;
 	int type;
 	int pad0;
 	char *name;
@@ -94,9 +95,9 @@ typedef struct TerrainBlueprint {
 
 typedef struct Terrain {
 	ID id;
-	TerrainBlueprint *blueprint;
+	ListBase blueprints;
+	int curr;
 	int mode;
-	int pad0;
 } Terrain;
 
 #endif /* __DNA_TERRAIN_TYPES_H__ */

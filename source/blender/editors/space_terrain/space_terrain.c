@@ -158,7 +158,6 @@ static int terrain_context(const bContext *C, const char *member,
 static void terrain_main_area_draw(const bContext *C, ARegion *ar)
 {
 	/* draw entirely, view changes should be handled here */
-	SpaceTerrain *sterrain = CTX_wm_space_terrain(C);
 	View2D *v2d = &ar->v2d;
 	View2DScrollers *scrollers;
 
@@ -171,6 +170,9 @@ static void terrain_main_area_draw(const bContext *C, ARegion *ar)
 
 	/* reset view matrix */
 	UI_view2d_view_restore(C);
+
+    /* Draw terrain */
+    terrain_draw_current(C, ar);
 
 	/* scrollers */
 	scrollers = UI_view2d_scrollers_calc(C, v2d, V2D_ARG_DUMMY, 
