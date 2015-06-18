@@ -65,7 +65,7 @@ static void generators_layout_cancel(bContext *C, wmOperator *op)
 void TERRAIN_OT_generators_layout(wmOperatorType *ot)
 {
 	/* identifiers */
-	ot->name = "Layout generator";
+	ot->name = "Layout";
 	ot->description = "Layout generator";
 	ot->idname = "TERRAIN_OT_generators_layout";
 
@@ -108,7 +108,7 @@ static void generators_constant_cancel(bContext *C, wmOperator *op)
 void TERRAIN_OT_generators_constant(wmOperatorType *ot)
 {
 	/* identifiers */
-	ot->name = "Constant generator";
+	ot->name = "Constant";
 	ot->description = "Constant generator";
 	ot->idname = "TERRAIN_OT_generators_constant";
 
